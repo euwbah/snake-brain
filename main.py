@@ -9,11 +9,11 @@ import node
 # Data type alias
 Data = List[Tuple[List[float], List[float]]]
 
-def generate_data(size: int, min: float = -10, max: float = 10, max_multiple: int = 100) -> Data:
+def generate_data(size: int, min: float = -1, max: float = 1, max_multiple: int = 100) -> Data:
     """
 
     Generates sample data of the following two categories in equal proportion:
-        1. [x, y] -> [1] where x is a positive/negative integer multiple of y
+        1. [x, y] -> [1] where x is a positive integer multiple of y
         2. [a, b] -> [0] where a b are random numbers of which abs(a - round_multiple(a, b)) is at least 5% of b.
 
         where a, b, x, y are limited to the range from `min` to `max`.
@@ -34,17 +34,17 @@ def generate_data(size: int, min: float = -10, max: float = 10, max_multiple: in
 
     for i in range(0, size):
         if generate_correct:
-            x = random() * (max - min) - min
+            x = random() * (max - min) + min
             y = x / randint(1, max_multiple) * choice([-1, 1])
-            data.append(([x, y], [1]))
+            data.append((choice([[x, y], [y, x]]), [1]))
         else:
             while True:
                 a = random() * (max - min) + min
                 b = random() * (max - min) + min
 
-                # Make sure values of a and b are not within 5% range of being
+                # Make sure values of a and b are not within a certain range of being
                 # the correct answer relative to the value of b.
-                if abs(a - (b * round(a / b))) / b < 0.05:
+                if abs(a - (b * round(a / b))) / b < 0.01:
                     continue
 
                 data.append(([a, b], [0]))
@@ -87,7 +87,7 @@ def test_evaluate_dloss_dactivation(network: Network, data: Data):
     ground_truths = data[0][1]
     network.evaluate_gradients(ground_truths)
 
-def create_network_model(network: Network, n_hidden_layers: int, n_nodes_per_hidden_layer: int):
+def create_network_model(network: Network, n_hidden_layers: int, n_nodes_per_hidden_layer: int, elu_alpha: int = 1):
     """
     Creates, connects, and registers the nodes on the network for the task of identifying if
     i1 is perfectly divisible by i2.
@@ -123,8 +123,8 @@ def create_network_model(network: Network, n_hidden_layers: int, n_nodes_per_hid
         curr_layer_nodes = []
         for n in range(1, n_nodes_per_hidden_layer + 1):
 
-            # Each hidden layer node is an ELU with an alpha value of 5
-            new_node = node.ELUNode(f"h{l}_{n}", 5)
+            # Each hidden layer node is an ELU
+            new_node = node.ELUNode(f"h{l}_{n}", elu_alpha)
 
             # Give this node a bias
             bias.connect(new_node)
@@ -277,7 +277,7 @@ def train_one_epoch(network: Network, training_data: Data, validation_data: Data
         f.write(f"Epoch {epoch_number} - avg. training loss: {avg_training_loss}, "
                 f"avg. val. loss: {avg_validation_loss}\n")
 
-def train_model(model_name: str, stop_after_epoch: int):
+def train_model(model_name: str, hidden_layers: int, nodes_per_layer: int, elu_alpha: int, stop_after_epoch: int):
     """
     Scaffolds the network model, loads previous weights (if any), trains, validates and saves new weights & losses
 
@@ -288,22 +288,45 @@ def train_model(model_name: str, stop_after_epoch: int):
     training_data = generate_data(800)
     val_data = generate_data(200)
     network = Network()
-    create_network_model(network, 4, 20)
+    create_network_model(network, hidden_layers, nodes_per_layer, elu_alpha)
     # Load most recently trained epoch
     # If no trained weights exist, start training from epoch 1
-    last_epoch = load_weights(network, model_name) or 0
+    prev_epoch = load_weights(network, model_name) or 0
 
-    if last_epoch >= stop_after_epoch:
+    if prev_epoch >= stop_after_epoch:
         print(f"WARN: Not training anything! Epoch {stop_after_epoch} was already trained.")
 
-    curr_epoch = last_epoch + 1
+    curr_epoch = prev_epoch + 1
 
     while curr_epoch <= stop_after_epoch:
         print(f"Training new epoch: {curr_epoch}")
-        train_one_epoch(network, training_data, val_data, 0.001, model_name, curr_epoch, 40, 20)
+        train_one_epoch(network, training_data, val_data, 0.001, model_name, curr_epoch, 80, 20)
         curr_epoch += 1
 
+def test_model(model_name: str, hidden_layers: int, nodes_per_layer: int, elu_alpha: int, epoch_number: Optional[int] = None):
+
+    network = Network()
+    create_network_model(network, hidden_layers, nodes_per_layer, elu_alpha)
+
+    epoch = load_weights(network, model_name, epoch_number)
+
+    print(f"Loaded epoch {epoch} of {model_name}. Ready to test:")
+
+    while True:
+        a = float(input('Enter a: '))
+        b = float(input('Enter b: '))
+
+        [output] = network.predict([a, b])
+
+        if output >= 0.5:
+            print(f"Network is {round(output * 100, 2)}% sure that {a} is perfectly divisible by {b}")
+        else:
+            print(f"Network is {round(100 - output * 100, 2)}% sure that {a} is NOT perfectly divisible by {b}")
+
+
 if __name__ == "__main__":
-    train_model("test4_20", 10)
+    # d = generate_data(10)
+    # test_model('test5_5_alpha1_bidirectional', 5, 5, 1)
+    train_model('test6_6_alpha1_bidirectional', 6, 6, 1, 100)
 
     exit(0)

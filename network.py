@@ -71,7 +71,6 @@ class Network:
     def forward_propagate(self) -> List[float]:
         """
         Perform "forward propagation" recursively.
-        This function can be used to make predictions.
 
         :return: a list of activations corresponding to the activation values of the output nodes on the final layer.
         The values correspond in the same order as self.output_nodes
@@ -129,6 +128,7 @@ class Network:
 
         NOTE: evaluate_gradients must be called first!
 
+        :param log: Set True to show information of each weight update
         :return (average dloss_dweight, max dloss_dweight) amongst all the nodes
         """
 
@@ -250,3 +250,14 @@ class Network:
         loss = self.evaluate_loss(ground_truths)
 
         return loss
+
+    def predict(self, inputs: List[float]) -> List[float]:
+        """
+        Set inputs & get the network's output
+
+        :param inputs: Input values
+        :return: Output values
+        """
+
+        self.assign_inputs(inputs)
+        return self.forward_propagate()
