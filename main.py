@@ -9,7 +9,7 @@ import node
 # Data type alias
 Data = List[Tuple[List[float], List[float]]]
 
-def generate_data(size: int, min: float = -100, max: float = 100, max_multiple: int = 20) -> Data:
+def generate_data(size: int, min: float = -10, max: float = 10, max_multiple: int = 100) -> Data:
     """
 
     Generates sample data of the following two categories in equal proportion:
@@ -158,6 +158,7 @@ def load_weights(network: Network, model_name: str, epoch: Optional[int] = None)
     model_dir = os.path.join("logs", model_name)
     os.makedirs(model_dir, exist_ok=True)
     weight_files: Dict[int, str] = {} # <epoch, file name>
+    epoch_used = None
 
     for f in os.listdir(model_dir):
         match = re.fullmatch("""E(?P<epoch_number>[0-9]+)_weights\.txt""", f)
@@ -168,17 +169,23 @@ def load_weights(network: Network, model_name: str, epoch: Optional[int] = None)
     if epoch is None:
         if len(weight_files) != 0:
             # take the highest epoch in weight_files
-            highest_epoch_file = weight_files[sorted(weight_files)[-1]]
+            epoch_used = sorted(weight_files)[-1]
+            weights_file = weight_files[epoch_used]
         else:
             # Nothing to load, no previous model exists and no explicit epoch number to load
             return
     else:
         if epoch in weight_files:
-            highest_epoch_file = weight_files[epoch]
+            weights_file = weight_files[epoch]
+            epoch_used = epoch
         else:
             raise IndexError(f"Epoch {epoch} does not exist for model '{model_name}'")
 
-    network.load_weights(os.path.join(model_dir, highest_epoch_file))
+    weights_path = os.path.join(model_dir, weights_file)
+    print(f"Loaded weights from {weights_path}")
+    network.load_weights(weights_path)
+
+    return epoch_used
 
 
 def train_one_epoch(network: Network, training_data: Data, validation_data: Data,
@@ -237,8 +244,10 @@ def train_one_epoch(network: Network, training_data: Data, validation_data: Data
     for i, (inputs, ground_truths) in enumerate(training_data_subset):
 
         print(f"\n_____________________________\nTraining iteration {i + 1} / {training_sample_size}:")
-        iter_loss = network.train_iter(inputs, ground_truths, step_size, verbose)
-        print(f"Iter loss: {iter_loss}")
+        iter_loss, avg_dloss, max_dloss = network.train_iter(inputs, ground_truths, step_size, verbose)
+        print(f"Iter loss: {iter_loss}\n"
+              f"Avg d(loss)/d(weight): {avg_dloss}\n"
+              f"Max d(loss)/d(weight): {max_dloss}")
         avg_training_loss += iter_loss / training_sample_size
 
         if pause_after_iter:
@@ -291,10 +300,10 @@ def train_model(model_name: str, stop_after_epoch: int):
 
     while curr_epoch <= stop_after_epoch:
         print(f"Training new epoch: {curr_epoch}")
-        train_one_epoch(network, training_data, val_data, 0.001, model_name, curr_epoch, 80, 20)
+        train_one_epoch(network, training_data, val_data, 0.001, model_name, curr_epoch, 40, 20)
         curr_epoch += 1
 
 if __name__ == "__main__":
-    train_model("test4_20", 2)
+    train_model("test4_20", 10)
 
     exit(0)

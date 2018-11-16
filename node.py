@@ -169,7 +169,7 @@ class Node:
 
         return [dactivation_dweightedsum * w for w in dweightedsum_dinputweights]
 
-    def update_weights(self, step_size: float, log: bool = False):
+    def update_weights(self, step_size: float, log: bool = False) -> List[float]:
         """
         Updates weights for connections to input nodes using the previously calculated d(loss)/d(activation) value.
 
@@ -180,6 +180,7 @@ class Node:
                 (new weight = old weight - step size * d(loss) / d(weight)
         :param log:
                 Set True to output weight update info on the console
+        :return a list of dloss_dweights for checking if the node is dying.
         """
 
         dloss_dweights = [self.dloss_dactivation * da_di for da_di in self.calc_dinputweights_dactivation()]
@@ -189,6 +190,8 @@ class Node:
             if log:
                 print(f"Updated weight of {node.name}: {self.inputs[node]} --> {new} (dloss: {dloss_dweights[idx]})")
             self.inputs[node] = new
+
+        return dloss_dweights
 
     def serialize_weights(self) -> List[str]:
         """

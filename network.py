@@ -4,6 +4,7 @@ import re
 WEIGHT_RE = re.compile(r'\s*(?P<node>[^,]+)\s*,\s*(?P<input>[^,]+)\s*,\s*(?P<weight>.+?)\s*')
 ITER_RE = re.compile(r'iter:\s*(?P<iter>[0-9]+)\s*')
 
+
 class Network:
     """
     The neural network graph of nodes
@@ -122,15 +123,27 @@ class Network:
         for i in self.input_nodes:
             i.calc_dloss_dactivation(self, ground_truths, self.iter)
 
-    def update_weights(self, step_size: float, log: bool = False):
+    def update_weights(self, step_size: float, log: bool = False) -> (float, float):
         """
         Update weights of all registered nodes.
 
         NOTE: evaluate_gradients must be called first!
+
+        :return (average dloss_dweight, max dloss_dweight) amongst all the nodes
         """
 
+        dlosses = []
+        max_dloss = 0
+
         for node in self.nodes.values():
-            node.update_weights(step_size, log)
+            gradients = node.update_weights(step_size, log)
+            if len(gradients) > 0:
+                dlosses += gradients
+                max_gradient = max(gradients)
+                if max_gradient > max_dloss:
+                    max_dloss = max_gradient
+
+        return sum(dlosses) / len(dlosses), max_dloss
 
     def save_weights(self, path: str):
         """
@@ -140,7 +153,7 @@ class Network:
         """
         with open(path, "w") as f:
 
-            f.write(f"iter: {self.iter}")
+            f.write(f"iter: {self.iter}\n")
 
             for node in self.nodes.values():
                 for weight_info in node.serialize_weights():
@@ -158,7 +171,7 @@ class Network:
 
         contents = ""
 
-        with open(path, "a") as f:
+        with open(path, "r") as f:
             contents = f.read()
 
         lines = contents.split('\n')
@@ -187,14 +200,15 @@ class Network:
 
                 continue
 
-    def train_iter(self, inputs: List[float], ground_truths: List[float], step_size: float, verbose: bool = False) -> float:
+    def train_iter(self, inputs: List[float], ground_truths: List[float], step_size: float, verbose: bool = False) \
+            -> (float, float, float):
         """
         Train a single iteration of the network.
         :param inputs:
         :param ground_truths:
         :param step_size:
         :param verbose:
-        :return the training loss for this iteration
+        :return (training loss, avg. dloss_dweight, max dloss_dweight)
         """
 
         if verbose:
@@ -209,11 +223,11 @@ class Network:
         loss = self.evaluate_loss(ground_truths)
 
         self.evaluate_gradients(ground_truths)
-        self.update_weights(step_size, verbose)
+        avg_dloss, max_dloss = self.update_weights(step_size, verbose)
 
         self.iter += 1
 
-        return loss
+        return loss, avg_dloss, max_dloss
 
     def validate(self, inputs: List[float], ground_truths: List[float], verbose: bool = False) -> float:
         """
