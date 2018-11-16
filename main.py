@@ -1,5 +1,7 @@
-from typing import Tuple, List
-from random import random, randint, choice
+import os
+import re
+from typing import Tuple, List, Optional, Dict
+from random import random, randint, choice, sample
 
 from network import Network
 import node
@@ -143,38 +145,156 @@ def create_network_model(network: Network, n_hidden_layers: int, n_nodes_per_hid
     network.register_nodes([i1, i2], [o1])
 
 
-def train_one_epoch(network: Network, data: Data, step_size: float, save_file_prefix: str, verbose: bool = False,
-                    pause_after_iter: bool = False):
+def load_weights(network: Network, model_name: str, epoch: Optional[int] = None) -> Optional[int]:
     """
-    Train the network for 1 epoch (1 forward and backward prop through each item in the data set.)
+    Load weights from a trained epoch. Nothing happens if no previously trained model is found.
 
     :param network: The Network object
-    :param data: Training data
+    :param model_name: Name of the previously trained model
+    :param epoch: A particular epoch number to load. If none specified, loads the last one.
+    :return: Returns the epoch number that was loaded, or None if none exists
+    """
+
+    model_dir = os.path.join("logs", model_name)
+    os.makedirs(model_dir, exist_ok=True)
+    weight_files: Dict[int, str] = {} # <epoch, file name>
+
+    for f in os.listdir(model_dir):
+        match = re.fullmatch("""E(?P<epoch_number>[0-9]+)_weights\.txt""", f)
+        if match is not None:
+            epoch_number = int(match.group("epoch_number"))
+            weight_files[epoch_number] = f
+
+    if epoch is None:
+        if len(weight_files) != 0:
+            # take the highest epoch in weight_files
+            highest_epoch_file = weight_files[sorted(weight_files)[-1]]
+        else:
+            # Nothing to load, no previous model exists and no explicit epoch number to load
+            return
+    else:
+        if epoch in weight_files:
+            highest_epoch_file = weight_files[epoch]
+        else:
+            raise IndexError(f"Epoch {epoch} does not exist for model '{model_name}'")
+
+    network.load_weights(os.path.join(model_dir, highest_epoch_file))
+
+
+def train_one_epoch(network: Network, training_data: Data, validation_data: Data,
+                    step_size: float, model_name: str, epoch_number: int,
+                    training_iterations: Optional[int] = None,
+                    validation_iterations: Optional[int] = None,
+                    verbose: bool = False, pause_after_iter: bool = False):
+    """
+    Train the network for 1 epoch.
+
+    Usually this means training on every sample in the dataset once, but the number of samples
+    to train on can be overridden by specifying it in the iterations_per_epoch parameter.
+
+    :param network: The Network object
+
+    :param training_data: Training data
+
+    :param validation_data: Validation data
+
+    :param epoch_number: The epoch number to name the saved weight file with.
+
+    :param training_iterations:
+            The number of training data samples to train on. Defaults to len(training_data).
+            Set this if training_data is huge.
+
+    :param validation_iterations:
+            The number of validation data samples to use. Defaults to len(validation_data).
+            Set this if validation_data is huge.
+
     :param step_size: The multiplier of the d(loss)/d(weight) derivative the weights are updated by.
-    :param save_file_prefix: The file name (and folder path) prefix used when saving the weight file.
+
+    :param model_name: A name used to identify this model when saving the weight files.
+
     :param verbose: Set True to show additional verbose logs
     :return:
     """
 
-    for inputs, ground_truths in data:
-        network.train_iter(inputs, ground_truths, step_size, verbose)
+    training_data_subset = training_data
+
+    if training_iterations is None or training_iterations > len(training_data):
+        training_iterations = len(training_data)
+
+    # Even if no subset specified, still use sample to randomize the order of the training data.
+    training_data_subset = sample(training_data_subset, training_iterations)
+
+    validation_data_subset = validation_data
+
+    if validation_iterations is None or validation_iterations > len(validation_data):
+        validation_iterations = len(validation_data)
+
+    # Even if no subset specified, still use sample to randomize the order of the validation data.
+    validation_data_subset = sample(validation_data_subset, validation_iterations)
+
+    training_sample_size = len(training_data_subset)
+    avg_training_loss = 0
+    for i, (inputs, ground_truths) in enumerate(training_data_subset):
+
+        print(f"\n_____________________________\nTraining iteration {i + 1} / {training_sample_size}:")
+        iter_loss = network.train_iter(inputs, ground_truths, step_size, verbose)
+        print(f"Iter loss: {iter_loss}")
+        avg_training_loss += iter_loss / training_sample_size
+
         if pause_after_iter:
             input()
 
-    network.save_weights(f"{save_file_prefix}.txt")
+    validation_sample_size = len(validation_data_subset)
+    avg_validation_loss = 0
+    for i, (inputs, ground_truths) in enumerate(validation_data_subset):
+        print(f"\n_____________________________\nValidating iteration {i + 1} / {validation_sample_size}:")
+        val_loss = network.validate(inputs, ground_truths, verbose)
+        avg_validation_loss += val_loss / validation_sample_size
 
-def train_model(model_name: str):
+        if verbose:
+            print(f"Val iter loss: {val_loss}")
+
+        if pause_after_iter:
+            input()
+
+    print(f"avg. training loss: {avg_training_loss}, avg. validation loss: {avg_validation_loss}")
+
+    weight_file = os.path.join("logs", model_name, f"E{epoch_number}_weights.txt")
+    os.makedirs(os.path.dirname(weight_file), exist_ok=True)
+    network.save_weights(weight_file)
+
+    loss_file = os.path.join("logs", model_name, "loss.txt")
+    with open(loss_file, "a") as f:
+        f.write(f"Epoch {epoch_number} - avg. training loss: {avg_training_loss}, "
+                f"avg. val. loss: {avg_validation_loss}\n")
+
+def train_model(model_name: str, stop_after_epoch: int):
     """
-    Generate
+    Scaffolds the network model, loads previous weights (if any), trains, validates and saves new weights & losses
 
+    :param model_name:
+    :param stop_after_epoch: Stop training after training this epoch numer
     :return:
     """
-    data = generate_data(100)
+    training_data = generate_data(800)
+    val_data = generate_data(200)
     network = Network()
-    create_network_model(network, 5, 10)
-    train_one_epoch(network, data, 0.0005, model_name, False)
+    create_network_model(network, 4, 20)
+    # Load most recently trained epoch
+    # If no trained weights exist, start training from epoch 1
+    last_epoch = load_weights(network, model_name) or 0
+
+    if last_epoch >= stop_after_epoch:
+        print(f"WARN: Not training anything! Epoch {stop_after_epoch} was already trained.")
+
+    curr_epoch = last_epoch + 1
+
+    while curr_epoch <= stop_after_epoch:
+        print(f"Training new epoch: {curr_epoch}")
+        train_one_epoch(network, training_data, val_data, 0.001, model_name, curr_epoch, 80, 20)
+        curr_epoch += 1
 
 if __name__ == "__main__":
-    train_model("test1")
+    train_model("test4_20", 2)
 
     exit(0)

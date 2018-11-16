@@ -1,5 +1,8 @@
 from typing import List, Dict
+import re
 
+WEIGHT_RE = re.compile(r'\s*(?P<node>[^,]+)\s*,\s*(?P<input>[^,]+)\s*,\s*(?P<weight>.+?)\s*')
+ITER_RE = re.compile(r'iter:\s*(?P<iter>[0-9]+)\s*')
 
 class Network:
     """
@@ -15,7 +18,9 @@ class Network:
 
         self.iter: int = 0
         """
-        Iteration counter that increments after each call to train_iter()
+        Iteration counter that increments after each call to train_iter().
+        
+        This value persists across weight saves/loads. 
         """
 
     def register_nodes(self, input_nodes: List['ConstantNode'], output_nodes: List['Node']):
@@ -64,7 +69,8 @@ class Network:
 
     def forward_propagate(self) -> List[float]:
         """
-        Perform "forward propagation" recursively
+        Perform "forward propagation" recursively.
+        This function can be used to make predictions.
 
         :return: a list of activations corresponding to the activation values of the output nodes on the final layer.
         The values correspond in the same order as self.output_nodes
@@ -128,18 +134,21 @@ class Network:
 
     def save_weights(self, path: str):
         """
-        Saves all weight information in the file at specified path
+        Saves all weights & other meta information in the file at specified path
 
         :param path: The path of the file
         """
         with open(path, "w") as f:
+
+            f.write(f"iter: {self.iter}")
+
             for node in self.nodes.values():
                 for weight_info in node.serialize_weights():
                     f.write(weight_info + "\n")
 
     def load_weights(self, path: str):
         """
-        Load connection weights from the file at the specified path.
+        Load connection weights & other meta information from the file at the specified path.
         Make sure that the nodes are connected and registered first, and that
         the network model architecture that was used to save the weights file
         is the same as this network.
@@ -155,35 +164,66 @@ class Network:
         lines = contents.split('\n')
 
         for line in lines:
-            if len(line) == 0 or line.isspace():
+
+            iter_match = ITER_RE.fullmatch(line)
+            if iter_match is not None:
+                self.iter = int(iter_match.group("iter"))
                 continue
 
-            parts: List[str] = [x.strip() for x in line.split(',')]
+            weight_match = WEIGHT_RE.fullmatch(line)
+            if weight_match is not None:
+                node_name = weight_match.group("node")
+                input_name = weight_match.group("input")
+                weight_str = weight_match.group("weight")
 
-            assert len(parts) == 3, "Invalid weight file format"
+                assert node_name in self.nodes, f"Node '{node_name}' not registered in the network!"
+                assert input_name in self.nodes, f"Node '{input_name}' not registered in the network!"
 
-            node_name, input_name, weight = parts
+                try:
+                    weight = float(weight_str)
+                    self.nodes[node_name].set_weight(self.nodes[input_name], weight)
+                except ValueError:
+                    raise AssertionError(f"Invalid weight file format - weight '{weight}' is not a float")
 
-            assert node_name in self.nodes, f"Node '{node_name}' not registered in the network!"
-            assert input_name in self.nodes, f"Node '{input_name}' not registered in the network!"
+                continue
 
-            try:
-                w = float(weight)
-                self.nodes[node_name].set_weight(self.nodes[input_name], w)
-            except ValueError:
-                raise AssertionError(f"Invalid weight file format - weight '{weight}' is not a float")
-
-    def train_iter(self, inputs: List[float], ground_truths: List[float], step_size: float, verbose: bool = False):
+    def train_iter(self, inputs: List[float], ground_truths: List[float], step_size: float, verbose: bool = False) -> float:
         """
         Train a single iteration of the network.
         :param inputs:
         :param ground_truths:
         :param step_size:
         :param verbose:
-        :return:
+        :return the training loss for this iteration
         """
 
-        print(f"\n_____________________________\nTraining iteration {self.iter}:")
+        if verbose:
+            print(f"Total iterations trained: {self.iter}")
+            print(f"Assigning inputs: {inputs}")
+        self.assign_inputs(inputs)
+
+        output_activations = self.forward_propagate()
+        if verbose:
+            print(f"Output activations: {output_activations}")
+
+        loss = self.evaluate_loss(ground_truths)
+
+        self.evaluate_gradients(ground_truths)
+        self.update_weights(step_size, verbose)
+
+        self.iter += 1
+
+        return loss
+
+    def validate(self, inputs: List[float], ground_truths: List[float], verbose: bool = False) -> float:
+        """
+        Does a forward pass and returns the loss. No weight update.
+
+        :param inputs:
+        :param ground_truths:
+        :param verbose:
+        :return: the loss score
+        """
 
         if verbose:
             print(f"Assigning inputs: {inputs}")
@@ -194,9 +234,5 @@ class Network:
             print(f"Output activations: {output_activations}")
 
         loss = self.evaluate_loss(ground_truths)
-        print(f"Loss: {loss}")
 
-        self.evaluate_gradients(ground_truths)
-        self.update_weights(step_size, verbose)
-
-        self.iter += 1
+        return loss
