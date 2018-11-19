@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c41dfa3-4f40-40b6-b946-77e5450e267e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/logs/test1_2/train_loss_raw.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logs/test1_2/val_loss_raw.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/network.py" beforeDir="false" afterPath="$PROJECT_DIR$/network.py" afterDir="false" />
@@ -16,40 +18,40 @@
     <session id="1110617775">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.12" value="1" />
-          <entry key="project.open.time.7" value="2" />
+          <entry key="project.open.time.7" value="4" />
           <entry key="project.open.time.71" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Python Console" value="1028" />
           <entry key="gitignore" value="16" />
-          <entry key="py" value="36636" />
-          <entry key="txt" value="112" />
+          <entry key="py" value="40182" />
+          <entry key="txt" value="127" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="128" />
-          <entry key="Python" value="37663" />
+          <entry key="PLAIN_TEXT" value="143" />
+          <entry key="Python" value="41209" />
           <entry key="RegExp" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gitignore" value="1" />
-          <entry key="py" value="11" />
-          <entry key="txt" value="38" />
+          <entry key="py" value="12" />
+          <entry key="txt" value="50" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="PLAIN_TEXT" value="39" />
-          <entry key="Python" value="11" />
+          <entry key="PLAIN_TEXT" value="51" />
+          <entry key="Python" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -60,8 +62,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5814">
-              <caret line="329" column="52" selection-start-line="329" selection-start-column="52" selection-end-line="329" selection-end-column="52" />
+            <state relative-caret-position="218">
+              <caret line="382" selection-start-line="382" selection-end-line="382" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -69,11 +71,61 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/logs/test6_6_alpha1_bidirectional/loss.txt">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/logs/test2_20/loss.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="22" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="403">
+              <caret line="100" lean-forward="true" selection-start-line="100" selection-end-line="100" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/network.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="141" column="45" lean-forward="true" selection-start-line="141" selection-start-column="45" selection-end-line="141" selection-end-column="45" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+                <marker date="1542600007367" expanded="true" signature="283:288" ph="..." />
+                <marker date="1542600007367" expanded="true" signature="5109:5823" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/logs/test1_20/loss.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="381" column="9" selection-start-line="381" selection-start-column="9" selection-end-line="381" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/logs/test1_2/train_loss_raw.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="475">
+              <caret line="399" column="19" selection-end-line="399" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/logs/test1_2/val_loss_raw.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="115">
+              <caret line="379" column="19" selection-end-line="399" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/logs/test1_2/loss.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="403">
+              <caret line="2004" selection-start-line="2004" selection-end-line="2004" />
             </state>
           </provider>
         </entry>
@@ -93,14 +145,15 @@
       <find>(ConstantNode|Node)</find>
       <find>(ConstantNode|ELUNode|SigmoidNode)</find>
       <find>append</find>
-      <find>training</find>
       <find>&quot;logs</find>
       <find>&quot;./logs</find>
+      <find>training</find>
     </findStrings>
     <replaceStrings>
       <replace>Node</replace>
       <replace>node.$1</replace>
       <replace>validation</replace>
+      <replace>val</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -113,8 +166,11 @@
         <option value="$PROJECT_DIR$/node.py" />
         <option value="$PROJECT_DIR$/logs/test4_20/E1_weights.txt" />
         <option value="$PROJECT_DIR$/logs/test4_20/E2_weights.txt" />
-        <option value="$PROJECT_DIR$/network.py" />
+        <option value="$PROJECT_DIR$/logs/test1_20/loss.txt" />
+        <option value="$PROJECT_DIR$/logs/test1_2/lossraw.txt" />
+        <option value="$PROJECT_DIR$/logs/test1_2/vallossraw.txt" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/network.py" />
       </list>
     </option>
   </component>
@@ -130,6 +186,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -146,18 +203,29 @@
               <item name="nnet-from-scratch" type="b2602c69:ProjectViewProjectNode" />
               <item name="nnet-from-scratch" type="462c0819:PsiDirectoryNode" />
               <item name="logs" type="462c0819:PsiDirectoryNode" />
-              <item name="test6_6_alpha1_bidirectional" type="462c0819:PsiDirectoryNode" />
+              <item name="test1_2" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nnet-from-scratch" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nnet-from-scratch" type="462c0819:PsiDirectoryNode" />
+              <item name="logs" type="462c0819:PsiDirectoryNode" />
+              <item name="test1_20" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nnet-from-scratch" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nnet-from-scratch" type="462c0819:PsiDirectoryNode" />
+              <item name="logs" type="462c0819:PsiDirectoryNode" />
+              <item name="test2_20" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last.edited.regexp" value="a, b, 3" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.completion" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -261,7 +329,14 @@
       <option name="project" value="LOCAL" />
       <updated>1542341460643</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Testing">
+      <created>1542350641449</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1542350641449</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -309,13 +384,13 @@
     <frame x="-1688" y="-588" width="1696" height="1026" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17490953" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17490953" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295964" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3295964" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39910313" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.39910313" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Version Control" order="6" show_stripe_button="false" />
@@ -355,7 +430,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="It works (sort of)" />
     <MESSAGE value="Fixed loading and saving issues + display avg &amp; max loss gradients" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed loading and saving issues + display avg &amp; max loss gradients" />
+    <MESSAGE value="Testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Testing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -370,6 +446,21 @@
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
+      <expression>
+        <expression-string>{i.name: w for i, w in network.nodes['o1'].inputs.items()}</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>{i.name: w for i, w in network.nodes['o1'].inputs}</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>network.nodes['o1'].inputs</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>[x[0][0] / x[0][1] for x in d]</expression-string>
         <language-id>Python</language-id>
@@ -448,13 +539,6 @@
     <entry file="file://$PROJECT_DIR$/logs/test1_200_alpha1/loss.txt" />
     <entry file="file://$PROJECT_DIR$/logs/test1_200_alpha3/loss.txt" />
     <entry file="file://$PROJECT_DIR$/logs/test1_200_alpha6/loss.txt" />
-    <entry file="file://$PROJECT_DIR$/network.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="256" selection-start-line="256" selection-end-line="256" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/logs/test1_200_alpha5/loss.txt" />
     <entry file="file://$PROJECT_DIR$/logs/test1_200_alpha5_positive/loss.txt" />
     <entry file="file://$PROJECT_DIR$/logs/test1_200_alpha1_small/loss.txt" />
@@ -479,20 +563,96 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/logs/test6_6_alpha1_bidirectional/loss.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/test1_5_alpha1_bidir_minmax1_mult100/loss.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6527">
+          <caret line="15" column="55" selection-start-line="15" selection-start-column="55" selection-end-line="15" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/test1_5_alpha1_bidir/loss.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6743" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/test1_5_alpha1_bidir/E400_weights.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/test3_5_alpha1_bidir/E12_weights.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-677">
+          <caret line="21" column="32" lean-forward="true" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/test3_5_alpha1_bidir/loss.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-839">
+          <caret line="731" column="22" selection-start-line="731" selection-start-column="21" selection-end-line="731" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/test1_2/loss.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="2004" selection-start-line="2004" selection-end-line="2004" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/test1_20/loss.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="381" column="9" selection-start-line="381" selection-start-column="9" selection-end-line="381" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/test1_2/train_loss_raw.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="399" column="19" selection-end-line="399" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/test1_2/val_loss_raw.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="379" column="19" selection-end-line="399" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5814">
-          <caret line="329" column="52" selection-start-line="329" selection-start-column="52" selection-end-line="329" selection-end-column="52" />
+        <state relative-caret-position="218">
+          <caret line="382" selection-start-line="382" selection-end-line="382" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/logs/test6_6_alpha1_bidirectional/loss.txt">
+    <entry file="file://$PROJECT_DIR$/logs/test2_20/loss.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="403">
+          <caret line="100" lean-forward="true" selection-start-line="100" selection-end-line="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/network.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="141" column="45" lean-forward="true" selection-start-line="141" selection-start-column="45" selection-end-line="141" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+            <marker date="1542600007367" expanded="true" signature="283:288" ph="..." />
+            <marker date="1542600007367" expanded="true" signature="5109:5823" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -9,7 +9,8 @@ import node
 # Data type alias
 Data = List[Tuple[List[float], List[float]]]
 
-def generate_data(size: int, min: float = -1, max: float = 1, max_multiple: int = 100) -> Data:
+def generate_data(size: int, min: float = -1, max: float = 1, max_multiple: int = 100,
+                  bidirectional: bool = True) -> Data:
     """
 
     Generates sample data of the following two categories in equal proportion:
@@ -26,6 +27,9 @@ def generate_data(size: int, min: float = -1, max: float = 1, max_multiple: int 
                 Maximum values of the input dataset
     :param max_multiple:
                 The highest value of abs(x / y) generated
+    :param bidirectional:
+                If true, Either x or y can be perfectly divisible by the other to give a [1] output.
+                Otherwise, only x can be perfectly divisible by y and not the other way around.
     :return: A list of (input vector, ground truth vector) tuples
     """
 
@@ -36,7 +40,11 @@ def generate_data(size: int, min: float = -1, max: float = 1, max_multiple: int 
         if generate_correct:
             x = random() * (max - min) + min
             y = x / randint(1, max_multiple) * choice([-1, 1])
-            data.append((choice([[x, y], [y, x]]), [1]))
+
+            if bidirectional:
+                [x, y] = choice([[x, y], [y, x]])
+
+            data.append(([x, y], [1]))
         else:
             while True:
                 a = random() * (max - min) + min
@@ -126,8 +134,10 @@ def create_network_model(network: Network, n_hidden_layers: int, n_nodes_per_hid
             # Each hidden layer node is an ELU
             new_node = node.ELUNode(f"h{l}_{n}", elu_alpha)
 
-            # Give this node a bias
-            bias.connect(new_node)
+            # Give this node a bias, set bias weight to 0.
+            # This is fine as long as not all the weights are 0 - see
+            # https://medium.com/usf-msds/deep-learning-best-practices-1-weight-initialization-14e5c0295b94#1539
+            bias.connect(new_node, 0)
 
             # Connect each node of the previous layer to this node
             for p in prev_layer_nodes:
@@ -192,7 +202,8 @@ def train_one_epoch(network: Network, training_data: Data, validation_data: Data
                     step_size: float, model_name: str, epoch_number: int,
                     training_iterations: Optional[int] = None,
                     validation_iterations: Optional[int] = None,
-                    verbose: bool = False, pause_after_iter: bool = False):
+                    verbose: bool = False, pause_after_iter: bool = False,
+                    save_weights: bool = True):
     """
     Train the network for 1 epoch.
 
@@ -220,6 +231,10 @@ def train_one_epoch(network: Network, training_data: Data, validation_data: Data
     :param model_name: A name used to identify this model when saving the weight files.
 
     :param verbose: Set True to show additional verbose logs
+
+    :param pause_after_iter: Wait for newline input before proceeding with the next iteration for debugging purposes.
+
+    :param save_weights: Set False to not save the weights to the weights file after this epoch.
     :return:
     """
 
@@ -228,7 +243,7 @@ def train_one_epoch(network: Network, training_data: Data, validation_data: Data
     if training_iterations is None or training_iterations > len(training_data):
         training_iterations = len(training_data)
 
-    # Even if no subset specified, still use sample to randomize the order of the training data.
+    # Even if no subset specified, `sample` should still be used to randomize the order of the training data.
     training_data_subset = sample(training_data_subset, training_iterations)
 
     validation_data_subset = validation_data
@@ -236,7 +251,6 @@ def train_one_epoch(network: Network, training_data: Data, validation_data: Data
     if validation_iterations is None or validation_iterations > len(validation_data):
         validation_iterations = len(validation_data)
 
-    # Even if no subset specified, still use sample to randomize the order of the validation data.
     validation_data_subset = sample(validation_data_subset, validation_iterations)
 
     training_sample_size = len(training_data_subset)
@@ -268,25 +282,59 @@ def train_one_epoch(network: Network, training_data: Data, validation_data: Data
 
     print(f"avg. training loss: {avg_training_loss}, avg. validation loss: {avg_validation_loss}")
 
-    weight_file = os.path.join("logs", model_name, f"E{epoch_number}_weights.txt")
-    os.makedirs(os.path.dirname(weight_file), exist_ok=True)
-    network.save_weights(weight_file)
+    if save_weights:
+        weight_file = os.path.join("logs", model_name, f"E{epoch_number}_weights.txt")
+        os.makedirs(os.path.dirname(weight_file), exist_ok=True)
+        network.save_weights(weight_file)
 
     loss_file = os.path.join("logs", model_name, "loss.txt")
     with open(loss_file, "a") as f:
         f.write(f"Epoch {epoch_number} - avg. training loss: {avg_training_loss}, "
                 f"avg. val. loss: {avg_validation_loss}\n")
 
-def train_model(model_name: str, hidden_layers: int, nodes_per_layer: int, elu_alpha: int, stop_after_epoch: int):
+
+def train_model(model_name: str, hidden_layers: int, nodes_per_layer: int, elu_alpha: int, stop_after_epoch: int,
+                save_every_n_epochs: int = 1,
+                training_min: int = -1, training_max: int = 1, training_max_mult: int = 100,
+                val_min: int = -2, val_max: int = 2, val_max_mult: int = 200,
+                bidirectional: bool = True,
+                training_data_size: int = 800, val_data_size: int = 200,
+                training_iterations_per_epoch: int = 80, val_iterations_per_epoch: int = 40,
+                step_size: float = 0.0005):
     """
     Scaffolds the network model, loads previous weights (if any), trains, validates and saves new weights & losses
 
-    :param model_name:
-    :param stop_after_epoch: Stop training after training this epoch numer
+    :param model_name: Used to save & load the model
+    :param hidden_layers: The number of layers.
+    :param nodes_per_layer: The number of fully connected nodes per layer
+    :param elu_alpha: The alpha constant used in the ELU activation function for the ELU nodes.
+    :param stop_after_epoch: Stop training after training this epoch number
+    :param save_every_n_epochs: Only save every nth epoch (where epoch `mod` n == 0 is satisfied)
+    :param training_min: Minimum value of training data
+    :param training_max: Maximum value of training data
+    :param training_max_mult:
+            Maximum integer value of c in the training data where x = c * y & {x, y} are the two input nodes.
+
+    :param val_min:  Minimum value of the training data
+    :param val_max: Maximum value of the training data
+    :param val_max_mult:
+            Maximum integer value of c in the validation data where x = c * y & {x, y} are the two input nodes.
+
+    :param bidirectional:
+            If true, Either x or y can be perfectly divisible by the other to give a [1] output.
+            Otherwise, only x can be perfectly divisible by y and not the other way around.
+            This applies for both training and validation data.
+
+    :param training_data_size: Number of training data samples to generate.
+    :param val_data_size: Number of validation data samples to generate.
+    :param training_iterations_per_epoch: Number of samples to train on per epoch.
+    :param val_iterations_per_epoch: Number of samples to perform validation on per epoch.
+    :param step_size:
+            Multiple of the d(loss)/d(weight) derivative to nudge the weight by per iteration.
     :return:
     """
-    training_data = generate_data(800)
-    val_data = generate_data(200)
+    training_data = generate_data(training_data_size, training_min, training_max, training_max_mult, bidirectional)
+    val_data = generate_data(val_data_size, val_min, val_max, val_max_mult, bidirectional)
     network = Network()
     create_network_model(network, hidden_layers, nodes_per_layer, elu_alpha)
     # Load most recently trained epoch
@@ -300,10 +348,14 @@ def train_model(model_name: str, hidden_layers: int, nodes_per_layer: int, elu_a
 
     while curr_epoch <= stop_after_epoch:
         print(f"Training new epoch: {curr_epoch}")
-        train_one_epoch(network, training_data, val_data, 0.001, model_name, curr_epoch, 80, 20)
+        train_one_epoch(network, training_data, val_data, step_size, model_name, curr_epoch,
+                        training_iterations_per_epoch, val_iterations_per_epoch,
+                        save_weights=curr_epoch % save_every_n_epochs == 0)
         curr_epoch += 1
 
-def test_model(model_name: str, hidden_layers: int, nodes_per_layer: int, elu_alpha: int, epoch_number: Optional[int] = None):
+
+def test_model(model_name: str, hidden_layers: int, nodes_per_layer: int, elu_alpha: int,
+               epoch_number: Optional[int] = None):
 
     network = Network()
     create_network_model(network, hidden_layers, nodes_per_layer, elu_alpha)
@@ -326,7 +378,14 @@ def test_model(model_name: str, hidden_layers: int, nodes_per_layer: int, elu_al
 
 if __name__ == "__main__":
     # d = generate_data(10)
-    # test_model('test5_5_alpha1_bidirectional', 5, 5, 1)
-    train_model('test6_6_alpha1_bidirectional', 6, 6, 1, 100)
+
+    # test_model('test1_20', 1, 20, 1)
+
+    train_model('test2_20',
+                2, 20, 1, 100, 10,
+                -1, 1, 10,
+                -2, 2, 20, True,
+                50000, 4000, 200, 100,
+                0.0008)
 
     exit(0)

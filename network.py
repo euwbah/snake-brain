@@ -138,7 +138,7 @@ class Network:
         for node in self.nodes.values():
             gradients = node.update_weights(step_size, log)
             if len(gradients) > 0:
-                dlosses += gradients
+                dlosses += [abs(g) for g in gradients]
                 max_gradient = max(gradients)
                 if max_gradient > max_dloss:
                     max_dloss = max_gradient
