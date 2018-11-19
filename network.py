@@ -1,5 +1,9 @@
-from typing import List, Dict
+import os
+from random import sample
+from typing import List, Dict, Optional
 import re
+
+from data import Data
 
 WEIGHT_RE = re.compile(r'\s*(?P<node>[^,]+)\s*,\s*(?P<input>[^,]+)\s*,\s*(?P<weight>.+?)\s*')
 ITER_RE = re.compile(r'iter:\s*(?P<iter>[0-9]+)\s*')
@@ -261,3 +265,148 @@ class Network:
 
         self.assign_inputs(inputs)
         return self.forward_propagate()
+
+
+def train_one_epoch(network: Network, training_data: Data, validation_data: Data,
+                    step_size: float, model_name: str, epoch_number: int,
+                    training_iterations: Optional[int] = None,
+                    validation_iterations: Optional[int] = None,
+                    verbose: bool = False, pause_after_iter: bool = False,
+                    save_weights: bool = True):
+    """
+    Train the network for 1 epoch.
+
+    Usually this means training on every sample in the dataset once, but the number of samples
+    to train on can be overridden by specifying it in the iterations_per_epoch parameter.
+
+    :param network: The Network object
+
+    :param training_data: Training data
+
+    :param validation_data: Validation data
+
+    :param epoch_number: The epoch number to name the saved weight file with.
+
+    :param training_iterations:
+            The number of training data samples to train on. Defaults to len(training_data).
+            Set this if training_data is huge.
+
+    :param validation_iterations:
+            The number of validation data samples to use. Defaults to len(validation_data).
+            Set this if validation_data is huge.
+
+    :param step_size: The multiplier of the d(loss)/d(weight) derivative the weights are updated by.
+
+    :param model_name: A name used to identify this model when saving the weight files.
+
+    :param verbose: Set True to show additional verbose logs
+
+    :param pause_after_iter: Wait for newline input before proceeding with the next iteration for debugging purposes.
+
+    :param save_weights: Set False to not save the weights to the weights file after this epoch.
+    :return:
+    """
+
+    training_data_subset = training_data
+
+    if training_iterations is None or training_iterations > len(training_data):
+        training_iterations = len(training_data)
+
+    # Even if no subset specified, `sample` should still be used to randomize the order of the training data.
+    training_data_subset = sample(training_data_subset, training_iterations)
+
+    validation_data_subset = validation_data
+
+    if validation_iterations is None or validation_iterations > len(validation_data):
+        validation_iterations = len(validation_data)
+
+    validation_data_subset = sample(validation_data_subset, validation_iterations)
+
+    training_sample_size = len(training_data_subset)
+    avg_training_loss = 0
+
+    # Perform training iterations
+    for i, (inputs, ground_truths) in enumerate(training_data_subset):
+
+        print(f"\n_____________________________\nTraining iteration {i + 1} / {training_sample_size}:")
+
+        iter_loss, avg_dloss, max_dloss = network.train_iter(inputs, ground_truths, step_size, verbose)
+
+        print(f"Iter loss: {iter_loss}\n"
+              f"Avg d(loss)/d(weight): {avg_dloss}\n"
+              f"Max d(loss)/d(weight): {max_dloss}")
+        avg_training_loss += iter_loss / training_sample_size
+
+        if pause_after_iter:
+            input()
+
+    validation_sample_size = len(validation_data_subset)
+    avg_validation_loss = 0
+    # Perform validation iterations
+    for i, (inputs, ground_truths) in enumerate(validation_data_subset):
+        print(f"\n_____________________________\nValidating iteration {i + 1} / {validation_sample_size}:")
+
+        val_loss = network.validate(inputs, ground_truths, verbose)
+
+        avg_validation_loss += val_loss / validation_sample_size
+
+        if verbose:
+            print(f"Val iter loss: {val_loss}")
+
+        if pause_after_iter:
+            input()
+
+    print(f"avg. training loss: {avg_training_loss}, avg. validation loss: {avg_validation_loss}")
+
+    if save_weights:
+        weight_file = os.path.join("logs", model_name, f"E{epoch_number}_weights.txt")
+        os.makedirs(os.path.dirname(weight_file), exist_ok=True)
+        network.save_weights(weight_file)
+
+    loss_file = os.path.join("logs", model_name, "loss.txt")
+    with open(loss_file, "a") as f:
+        f.write(f"Epoch {epoch_number} - avg. training loss: {avg_training_loss}, "
+                f"avg. val. loss: {avg_validation_loss}\n")
+
+
+def load_weights(network: Network, model_name: str, epoch: Optional[int] = None) -> Optional[int]:
+    """
+    Load weights from a trained epoch. Nothing happens if no previously trained model is found.
+
+    :param network: The Network object
+    :param model_name: Name of the previously trained model
+    :param epoch: A particular epoch number to load. If none specified, loads the last one.
+    :return: Returns the epoch number that was loaded, or None if none exists
+    """
+
+    model_dir = os.path.join("logs", model_name)
+    os.makedirs(model_dir, exist_ok=True)
+    weight_files: Dict[int, str] = {} # <epoch, file name>
+    epoch_used = None
+
+    for f in os.listdir(model_dir):
+        match = re.fullmatch("""E(?P<epoch_number>[0-9]+)_weights\.txt""", f)
+        if match is not None:
+            epoch_number = int(match.group("epoch_number"))
+            weight_files[epoch_number] = f
+
+    if epoch is None:
+        if len(weight_files) != 0:
+            # take the highest epoch in weight_files
+            epoch_used = sorted(weight_files)[-1]
+            weights_file = weight_files[epoch_used]
+        else:
+            # Nothing to load, no previous model exists and no explicit epoch number to load
+            return
+    else:
+        if epoch in weight_files:
+            weights_file = weight_files[epoch]
+            epoch_used = epoch
+        else:
+            raise IndexError(f"Epoch {epoch} does not exist for model '{model_name}'")
+
+    weights_path = os.path.join(model_dir, weights_file)
+    print(f"Loaded weights from {weights_path}")
+    network.load_weights(weights_path)
+
+    return epoch_used
