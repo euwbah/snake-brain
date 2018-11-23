@@ -19,8 +19,17 @@ class Node:
         # NOTE: Node means either a Node or any class that inherits the Node class.
         self.inputs: Dict[Node, float] = {}
         """
-        List of Node-weight tuples representing the nodes that this node uses as input, 
+        List of Node-weight KVPs representing the nodes that this node uses as input, 
         and their respective weights
+        """
+
+        self.prev_weight_change: List[float] = []
+        """
+        Contains the amount of which the weights were changed in the previous weight update for each node.
+        Index order same as key order in self.inputs.
+         
+        This is used for implementing momentum in weight updates where a fraction of the change in weights in the 
+        previous weight update is applied to the current weight update.
         """
 
         self.outputs: List[Node] = []
@@ -52,6 +61,7 @@ class Node:
             weight = random() * 2 - 1
 
         node.inputs[self] = weight
+        node.prev_weight_change.append(0)
 
     def calculate_weighted_sum(self) -> float:
         ws = 0
@@ -147,8 +157,9 @@ class Node:
             self.dloss_dactivation = n.evaluate_dloss_doutput(self, ground_truths)
         else:
             # Propagate recursion
-            self.dloss_dactivation = sum([o.calc_derivative_against(self) * o.calc_dloss_dactivation(n, ground_truths, iter)
-                                          for o in self.outputs])
+            self.dloss_dactivation = sum(
+                [o.calc_derivative_against(self) * o.calc_dloss_dactivation(n, ground_truths, iter)
+                 for o in self.outputs])
 
         self.last_derivative_eval_iter = iter
 
@@ -169,9 +180,10 @@ class Node:
 
         return [dactivation_dweightedsum * w for w in dweightedsum_dinputweights]
 
-    def update_weights(self, step_size: float, log: bool = False) -> List[float]:
+    def update_weights(self, step_size: float, momentum: float, decay: float, log: bool = False) -> List[float]:
         """
-        Updates weights for connections to input nodes using the previously calculated d(loss)/d(activation) value.
+        Updates weights for connections to input nodes using the previously calculated d(loss)/d(activation) value,
+        while applying common weight update techniques (momentum & weight decay) to improve training.
 
         NOTE: calc_dloss_dactivation must be evaluated first, otherwise this won't work!
 
@@ -180,16 +192,37 @@ class Node:
                 (new weight = old weight - step size * d(loss) / d(weight)
         :param log:
                 Set True to output weight update info on the console
+        :param momentum:
+                How much of the previous weight update is applied to the current weight update.
+                (1 --> 100%, 0 --> 0%)
+                Using momentum prevents the network from getting stuck in local minimas.
+                (Imagine a ball rolling down the loss function curve. If there is a pothole in the curve, momentum
+                may allow the ball to not be stuck.)
+        :param decay:
+                How much of the previous weight to subtract the current weight by.
+                (1 --> 100%, 0 --> 0%)
+                This will make the weight gravitate towards zero, so that the weights won't explode to NaN.
         :return a list of dloss_dweights for checking if the node is dying.
         """
 
         dloss_dweights = [self.dloss_dactivation * da_di for da_di in self.calc_dinputweights_dactivation()]
 
         for idx, node in enumerate(self.inputs):
-            new = self.inputs[node] - step_size * dloss_dweights[idx]
+            prev_weight = self.inputs[node]
+
+            weight_change = -step_size * dloss_dweights[idx]
+            weight_momentum = self.prev_weight_change[idx] * momentum
+
+            weight_decay = -prev_weight * decay
+            final_weight_change = weight_change + weight_momentum + weight_decay
+
+            new = self.inputs[node] + final_weight_change
             if log:
-                print(f"Updated weight of {node.name}: {self.inputs[node]} --> {new} (dloss: {dloss_dweights[idx]})")
+                print(f"Weight update {node.name}: {self.inputs[node]} --> {new} (dloss: {dloss_dweights[idx]}, "
+                      f"step: {weight_change}, momentum: {weight_momentum}, decay: {weight_decay})")
             self.inputs[node] = new
+
+            self.prev_weight_change[idx] = final_weight_change
 
         return dloss_dweights
 
@@ -214,6 +247,9 @@ class Node:
 
         self.inputs[input] = weight
 
+    def __repr__(self) -> str:
+        return f"{type(self)} act: {self.activation}, dloss: {self.dloss_dactivation}"
+
 
 class ConstantNode(Node):
     """
@@ -232,6 +268,20 @@ class ConstantNode(Node):
     def calc_derivative_against(self, input: 'Node'):
         raise NotImplementedError("Cannot calculate derivative from a constant node!")
 
+class LinearNode(Node):
+
+    def __init__(self, name):
+        """
+        Simply a weighted sum with identity activation function
+        """
+        super().__init__(name)
+
+    def calculate_activation(self) -> float:
+        self.activation = self.calculate_weighted_sum()
+        return self.activation
+
+    def calc_activation_derivative(self):
+        return 1
 
 class ELUNode(Node):
     def __init__(self, name: str, alpha: float):

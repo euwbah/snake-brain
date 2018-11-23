@@ -1,3 +1,4 @@
+import sys
 import os
 from random import sample
 from typing import List, Dict, Optional
@@ -126,13 +127,24 @@ class Network:
         for i in self.input_nodes:
             i.calc_dloss_dactivation(self, ground_truths, self.iter)
 
-    def update_weights(self, step_size: float, log: bool = False) -> (float, float):
+    def update_weights(self, step_size: float, momentum: float, decay: float, log: bool = False) -> (float, float):
         """
         Update weights of all registered nodes.
 
         NOTE: evaluate_gradients must be called first!
 
-        :param log: Set True to show information of each weight update
+        :param momentum:
+                How much of the previous weight update is applied to the current weight update.
+                (1 --> 100%, 0 --> 0%)
+                Using momentum prevents the network from getting stuck in local minimas.
+                (Imagine a ball rolling down the loss function curve. If there is a pothole in the curve, momentum
+                may allow the ball to not be stuck.)
+        :param decay:
+                How much of the previous weight to subtract the current weight by.
+                (1 --> 100%, 0 --> 0%)
+                This will make the weight gravitate towards zero, so that the weights won't explode to NaN.
+        :param log:
+                Set True to show information of each weight update
         :return (average dloss_dweight, max dloss_dweight) amongst all the nodes
         """
 
@@ -140,7 +152,7 @@ class Network:
         max_dloss = 0
 
         for node in self.nodes.values():
-            gradients = node.update_weights(step_size, log)
+            gradients = node.update_weights(step_size, momentum, decay, log)
             if len(gradients) > 0:
                 dlosses += [abs(g) for g in gradients]
                 max_gradient = max(gradients)
@@ -204,13 +216,24 @@ class Network:
 
                 continue
 
-    def train_iter(self, inputs: List[float], ground_truths: List[float], step_size: float, verbose: bool = False) \
+    def train_iter(self, inputs: List[float], ground_truths: List[float],
+                   step_size: float, momentum: float, decay: float, verbose: bool = False) \
             -> (float, float, float):
         """
         Train a single iteration of the network.
         :param inputs:
         :param ground_truths:
         :param step_size:
+        :param momentum:
+                How much of the previous weight update is applied to the current weight update.
+                (1 --> 100%, 0 --> 0%)
+                Using momentum prevents the network from getting stuck in local minimas.
+                (Imagine a ball rolling down the loss function curve. If there is a pothole in the curve, momentum
+                may allow the ball to not be stuck.)
+        :param decay:
+                How much of the previous weight to subtract the current weight by.
+                (1 --> 100%, 0 --> 0%)
+                This will make the weight gravitate towards zero, so that the weights won't explode to NaN.
         :param verbose:
         :return (training loss, avg. dloss_dweight, max dloss_dweight)
         """
@@ -218,6 +241,7 @@ class Network:
         if verbose:
             print(f"Total iterations trained: {self.iter}")
             print(f"Assigning inputs: {inputs}")
+            print(f"Expecting outputs: {ground_truths}")
         self.assign_inputs(inputs)
 
         output_activations = self.forward_propagate()
@@ -227,7 +251,7 @@ class Network:
         loss = self.evaluate_loss(ground_truths)
 
         self.evaluate_gradients(ground_truths)
-        avg_dloss, max_dloss = self.update_weights(step_size, verbose)
+        avg_dloss, max_dloss = self.update_weights(step_size, momentum, decay, verbose)
 
         self.iter += 1
 
@@ -267,10 +291,9 @@ class Network:
         return self.forward_propagate()
 
 
-def train_one_epoch(network: Network, training_data: Data, validation_data: Data,
-                    step_size: float, model_name: str, epoch_number: int,
-                    training_iterations: Optional[int] = None,
-                    validation_iterations: Optional[int] = None,
+def train_one_epoch(network: Network, training_data: Data, validation_data: Data, model_name: str, epoch_number: int,
+                    step_size: float, momentum: float = 0.1, decay: float = 0.0005,
+                    training_iterations: Optional[int] = None, validation_iterations: Optional[int] = None,
                     verbose: bool = False, pause_after_iter: bool = False,
                     save_weights: bool = True):
     """
@@ -287,6 +310,20 @@ def train_one_epoch(network: Network, training_data: Data, validation_data: Data
 
     :param epoch_number: The epoch number to name the saved weight file with.
 
+    :param step_size: The multiplier of the d(loss)/d(weight) derivative the weights are updated by.
+
+    :param momentum:
+            How much of the previous weight update is applied to the current weight update.
+            (1 --> 100%, 0 --> 0%)
+            Using momentum prevents the network from getting stuck in local minimas.
+            (Imagine a ball rolling down the loss function curve. If there is a pothole in the curve, momentum
+            may allow the ball to not be stuck.)
+
+    :param decay:
+            How much of the previous weight to subtract the current weight by.
+            (1 --> 100%, 0 --> 0%)
+            This will make the weight gravitate towards zero, so that the weights won't explode to NaN.
+
     :param training_iterations:
             The number of training data samples to train on. Defaults to len(training_data).
             Set this if training_data is huge.
@@ -294,8 +331,6 @@ def train_one_epoch(network: Network, training_data: Data, validation_data: Data
     :param validation_iterations:
             The number of validation data samples to use. Defaults to len(validation_data).
             Set this if validation_data is huge.
-
-    :param step_size: The multiplier of the d(loss)/d(weight) derivative the weights are updated by.
 
     :param model_name: A name used to identify this model when saving the weight files.
 
@@ -325,12 +360,18 @@ def train_one_epoch(network: Network, training_data: Data, validation_data: Data
     training_sample_size = len(training_data_subset)
     avg_training_loss = 0
 
+
     # Perform training iterations
+    first = True
     for i, (inputs, ground_truths) in enumerate(training_data_subset):
+
+        print("\033[A\033[K" * (0 if first else 7))
+        first = False
 
         print(f"\n_____________________________\nTraining iteration {i + 1} / {training_sample_size}:")
 
-        iter_loss, avg_dloss, max_dloss = network.train_iter(inputs, ground_truths, step_size, verbose)
+        iter_loss, avg_dloss, max_dloss = \
+            network.train_iter(inputs, ground_truths, step_size, momentum, decay, verbose)
 
         print(f"Iter loss: {iter_loss}\n"
               f"Avg d(loss)/d(weight): {avg_dloss}\n"
@@ -339,6 +380,8 @@ def train_one_epoch(network: Network, training_data: Data, validation_data: Data
 
         if pause_after_iter:
             input()
+
+
 
     validation_sample_size = len(validation_data_subset)
     avg_validation_loss = 0
@@ -355,6 +398,9 @@ def train_one_epoch(network: Network, training_data: Data, validation_data: Data
 
         if pause_after_iter:
             input()
+
+        print("\033[A\033[K" * (5 if verbose else 4))
+
 
     print(f"avg. training loss: {avg_training_loss}, avg. validation loss: {avg_validation_loss}")
 
