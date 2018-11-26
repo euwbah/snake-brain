@@ -230,8 +230,16 @@ class Node:
             final_weight_change = weight_change + weight_momentum + weight_decay
 
             new = self.inputs[node] + final_weight_change
+
+            if final_weight_change > 10:
+                print(f'WARN: Possible exploding weight {node.name} --> {self.name}: {self.inputs[node]}'
+                      f" {'+' if final_weight_change >= 0 else '-'} {final_weight_change}"
+                      f" --> {new}")
+
             if log:
-                print(f"Weight update {node.name} --> {self.name}: {self.inputs[node]} --> {new} (dloss: {dloss_dweights[idx]}, "
+                print(f"Weight update {node.name} --> {self.name}: {self.inputs[node]}"
+                      f" {'+' if final_weight_change >= 0 else '-'} {final_weight_change}"
+                      f" --> {new} (dloss: {dloss_dweights[idx]}, "
                       f"step: {weight_change}, momentum: {weight_momentum}, decay: {weight_decay})")
             self.inputs[node] = new
 
@@ -339,6 +347,9 @@ class ELUNode(Node):
 
 
 class SigmoidNode(Node):
+    """
+    Uses the logistic activation function.
+    """
     def calculate_activation(self) -> Decimal:
         self.activation = self.sigmoid(self.calculate_weighted_sum())
         return self.activation

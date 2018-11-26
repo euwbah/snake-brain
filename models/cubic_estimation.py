@@ -5,7 +5,7 @@ Network model for interpolating & extrapolating data points from a quadratic equ
 from random import random
 from typing import Optional
 
-from architectures import create_elu_linear_model_linear_output
+from architectures import create_elu_logistic_layers_model_linear_output
 from data import Data
 from network import Network, load_weights, train_one_epoch
 
@@ -43,7 +43,7 @@ def train_model(model_name: str, hidden_layers: int, nodes_per_layer: int, elu_a
                 training_data_size: int = 800, val_data_size: int = 200,
                 training_iterations_per_epoch: int = 80, val_iterations_per_epoch: int = 40,
                 step_size: float = 0.0005, momentum: float = 0.1, decay: float = 0.00005,
-                verbose: bool = False, pause_after_iter: Optional[float] = None):
+                log_level: int = 0, pause_after_iter: Optional[float] = None):
     """
     Scaffolds the network model, loads previous weights (if any), trains, validates and saves new weights & losses
 
@@ -96,7 +96,7 @@ def train_model(model_name: str, hidden_layers: int, nodes_per_layer: int, elu_a
     training_data = generate_data_cubic_equation(training_data_size, training_min, training_max, a, b, c, d)
     val_data = generate_data_cubic_equation(val_data_size, val_min, val_max, a, b, c, d)
     network = Network()
-    create_elu_linear_model_linear_output(network, 1, 1, hidden_layers, nodes_per_layer, elu_alpha)
+    create_elu_logistic_layers_model_linear_output(network, 1, 1, hidden_layers, nodes_per_layer, elu_alpha)
     prev_epoch = load_weights(network, model_name) or 0
 
     if prev_epoch >= stop_after_epoch:
@@ -110,7 +110,7 @@ def train_model(model_name: str, hidden_layers: int, nodes_per_layer: int, elu_a
                         step_size, momentum, decay,
                         training_iterations_per_epoch, val_iterations_per_epoch,
                         save_weights=curr_epoch % save_every_n_epochs == 0,
-                        verbose=verbose,
+                        log_level=log_level,
                         pause_after_iter=pause_after_iter)
         curr_epoch += 1
 
@@ -118,7 +118,7 @@ def train_model(model_name: str, hidden_layers: int, nodes_per_layer: int, elu_a
 def test_model(model_name: str, hidden_layers: int, nodes_per_layer: int, elu_alpha: float,
                epoch_number: Optional[int] = None):
     network = Network()
-    create_elu_linear_model_linear_output(network, 1, 1, hidden_layers, nodes_per_layer, elu_alpha)
+    create_elu_logistic_layers_model_linear_output(network, 1, 1, hidden_layers, nodes_per_layer, elu_alpha)
 
     epoch = load_weights(network, model_name, epoch_number)
 

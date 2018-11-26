@@ -229,7 +229,7 @@ class Network:
                 continue
 
     def train_iter(self, inputs: List[Union[float, Decimal]], ground_truths: List[Union[float, Decimal]],
-                   step_size: float, momentum: float, decay: float, verbose: bool = False) \
+                   step_size: float, momentum: float, decay: float, log_level: int = 0) \
             -> (float, float, float):
         """
         Train a single iteration of the network.
@@ -246,46 +246,54 @@ class Network:
                 How much of the previous weight to subtract the current weight by.
                 (1 --> 100%, 0 --> 0%)
                 This will make the weight gravitate towards zero, so that the weights won't explode to NaN.
-        :param verbose:
+        :param log_level:
+                0 - Don't log anything
+                1 - Print inputs, output activations and ground truths.
+                2 - ...and weight updates for each connection
         :return: (training loss, avg. dloss_dweight, max dloss_dweight)
         """
 
-        if verbose:
-            print(f"Total iterations trained: {self.iter}")
+        log_io_activations = log_level >= 1
+        log_weight_updates = log_level >= 2
+
+        if log_io_activations:
             print(f"Assigning inputs: {inputs}")
             print(f"Expecting outputs: {ground_truths}")
         self.assign_inputs(inputs)
 
         output_activations = self.forward_propagate()
-        if verbose:
+        if log_io_activations:
             print(f"Output activations: {output_activations}")
 
         loss = self.evaluate_loss(ground_truths)
 
         self.evaluate_gradients(ground_truths)
-        avg_dloss, max_dloss = self.update_weights(step_size, momentum, decay, verbose)
+        avg_dloss, max_dloss = self.update_weights(step_size, momentum, decay, log_weight_updates)
 
         self.iter += 1
 
         return loss, avg_dloss, max_dloss
 
     def validate(self, inputs: List[Union[float, Decimal]], ground_truths: List[Union[float, Decimal]],
-                 verbose: bool = False) -> Decimal:
+                 log_level: int = 0) -> Decimal:
         """
         Does a forward pass and returns the loss. No weight update.
 
         :param inputs:
         :param ground_truths:
-        :param verbose:
+        :param log_level:
         :return: the loss score
         """
 
-        if verbose:
+        log_io_activations = log_level >= 1
+
+        if log_io_activations:
             print(f"Assigning inputs: {inputs}")
         self.assign_inputs(inputs)
 
         output_activations = self.forward_propagate()
-        if verbose:
+
+        if log_io_activations:
             print(f"Output activations: {output_activations}")
 
         loss = self.evaluate_loss(ground_truths)
@@ -307,7 +315,7 @@ class Network:
 def train_one_epoch(network: Network, training_data: Data, validation_data: Data, model_name: str, epoch_number: int,
                     step_size: float, momentum: float = 0.1, decay: float = 0.0005,
                     training_iterations: Optional[int] = None, validation_iterations: Optional[int] = None,
-                    verbose: bool = False, pause_after_iter: Optional[float] = None,
+                    log_level: int = 0, pause_after_iter: Optional[float] = None,
                     save_weights: bool = True):
     """
     Train the network for 1 epoch.
@@ -347,7 +355,10 @@ def train_one_epoch(network: Network, training_data: Data, validation_data: Data
 
     :param model_name: A name used to identify this model when saving the weight files.
 
-    :param verbose: Set True to show additional verbose logs
+    :param log_level:
+            0: Minimal logs
+            1: Show input, activation and ground truth values, validation iteration loss
+            2: Show everything
 
     :param pause_after_iter:
             (For debugging purposes)
@@ -358,6 +369,8 @@ def train_one_epoch(network: Network, training_data: Data, validation_data: Data
     :param save_weights: Set False to not save the weights to the weights file after this epoch.
     :return:
     """
+
+    log_io_activations_val_iter_loss = log_level >= 1
 
     training_data_subset = training_data
 
@@ -382,7 +395,7 @@ def train_one_epoch(network: Network, training_data: Data, validation_data: Data
     for i, (inputs, ground_truths) in enumerate(training_data_subset):
 
         iter_loss, avg_dloss, max_dloss = \
-            network.train_iter(inputs, ground_truths, step_size, momentum, decay, verbose)
+            network.train_iter(inputs, ground_truths, step_size, momentum, decay, log_level)
 
         print("\033[A\033[K" * (0 if first else 7))
         first = False
@@ -401,24 +414,25 @@ def train_one_epoch(network: Network, training_data: Data, validation_data: Data
 
     validation_sample_size = len(validation_data_subset)
     avg_validation_loss = 0
+    lastidx = len(validation_data_subset) - 1
     # Perform validation iterations
     for i, (inputs, ground_truths) in enumerate(validation_data_subset):
         print(f"\n_____________________________\nValidating iteration {i + 1} / {validation_sample_size}:")
 
-        val_loss = network.validate(inputs, ground_truths, verbose)
+        val_loss = network.validate(inputs, ground_truths, log_level)
 
         avg_validation_loss += val_loss / validation_sample_size
 
-        if verbose:
+        if log_io_activations_val_iter_loss:
             print(f"Val iter loss: {val_loss}")
 
         if pause_after_iter:
             input()
 
-        print("\033[A\033[K" * (5 if verbose else 4))
+        if not i == lastidx:
+            print("\033[A\033[K" * (5 if log_io_activations_val_iter_loss else 4))
 
-
-    print(f"avg. training loss: {avg_training_loss}, avg. validation loss: {avg_validation_loss}")
+    print(f"\navg. training loss: {avg_training_loss}, avg. validation loss: {avg_validation_loss}")
 
     if save_weights:
         weight_file = os.path.join("logs", model_name, f"E{epoch_number}_weights.txt")
