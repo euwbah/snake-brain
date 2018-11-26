@@ -42,7 +42,8 @@ def train_model(model_name: str, hidden_layers: int, nodes_per_layer: int, elu_a
                 training_min: float = -5, training_max: float = 3, val_min: float = -3, val_max: float = 5,
                 training_data_size: int = 800, val_data_size: int = 200,
                 training_iterations_per_epoch: int = 80, val_iterations_per_epoch: int = 40,
-                step_size: float = 0.0005, momentum: float = 0.1, decay: float = 0.00005):
+                step_size: float = 0.0005, momentum: float = 0.1, decay: float = 0.00005,
+                verbose: bool = False, pause_after_iter: Optional[float] = None):
     """
     Scaffolds the network model, loads previous weights (if any), trains, validates and saves new weights & losses
 
@@ -109,8 +110,8 @@ def train_model(model_name: str, hidden_layers: int, nodes_per_layer: int, elu_a
                         step_size, momentum, decay,
                         training_iterations_per_epoch, val_iterations_per_epoch,
                         save_weights=curr_epoch % save_every_n_epochs == 0,
-                        verbose=False,
-                        pause_after_iter=False)
+                        verbose=verbose,
+                        pause_after_iter=pause_after_iter)
         curr_epoch += 1
 
 

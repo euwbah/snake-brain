@@ -1,10 +1,13 @@
 import sys
 import os
+from decimal import Decimal, Overflow
 from random import sample
-from typing import List, Dict, Optional
+from time import sleep
+from typing import List, Dict, Optional, Union
 import re
 
 from data import Data
+from helper_functions import coerce_decimal
 
 WEIGHT_RE = re.compile(r'\s*(?P<node>[^,]+)\s*,\s*(?P<input>[^,]+)\s*,\s*(?P<weight>.+?)\s*')
 ITER_RE = re.compile(r'iter:\s*(?P<iter>[0-9]+)\s*')
@@ -59,7 +62,7 @@ class Network:
         for n in output_nodes:
             register_node_and_inputs(n)
 
-    def assign_inputs(self, input_values: List[float]):
+    def assign_inputs(self, input_values: List[Union[float, Decimal]]):
         """
         Set the constant activation value for the network's input nodes to the values in input_values
 
@@ -70,10 +73,12 @@ class Network:
         """
         assert len(input_values) == len(self.input_nodes), "len(input_values) need to match len(Network.input_nodes)"
 
+        input_values = [coerce_decimal(i) for i in input_values]
+
         for idx, i in enumerate(self.input_nodes):
             i.activation = input_values[idx]
 
-    def forward_propagate(self) -> List[float]:
+    def forward_propagate(self) -> List[Decimal]:
         """
         Perform "forward propagation" recursively.
 
@@ -82,7 +87,7 @@ class Network:
         """
         return [o.calculate_activation() for o in self.output_nodes]
 
-    def evaluate_loss(self, ground_truths: List[float]) -> float:
+    def evaluate_loss(self, ground_truths: List[Union[float, Decimal]]) -> Decimal:
         """
         Evaluates the loss score using the Mean-Square Error function.
         Note that this function uses the previously cached activation values. Forward propagation must
@@ -94,11 +99,17 @@ class Network:
         assert len(ground_truths) == len(self.output_nodes), \
             "Number of ground truths need to match number of output nodes!"
 
-        square_error = sum([(self.output_nodes[i].activation - g) ** 2 for i, g in enumerate(ground_truths)])
+        ground_truths = [coerce_decimal(x) for x in ground_truths]
+
+        try:
+            square_error = sum([(self.output_nodes[i].activation - g) ** 2 for i, g in enumerate(ground_truths)])
+        except Overflow:
+            pass
+
         mean_square_error = square_error / len(self.output_nodes)
         return mean_square_error
 
-    def evaluate_dloss_doutput(self, output_node: 'Node', ground_truths: List[float]) -> float:
+    def evaluate_dloss_doutput(self, output_node: 'Node', ground_truths: List[Union[float, Decimal]]) -> Decimal:
         """
         Evaluates d(loss) / d(output_node.activation) assuming the loss function used is MSE
 
@@ -109,11 +120,12 @@ class Network:
 
         assert output_node in self.output_nodes, \
             "output_node param must be registered as an output node of the network!"
+
         ground_truth = ground_truths[self.output_nodes.index(output_node)]
 
         return 2 * (output_node.activation - ground_truth)
 
-    def evaluate_gradients(self, ground_truths: List[float]):
+    def evaluate_gradients(self, ground_truths: List[Union[float, Decimal]]):
         """
         Calls calc_dloss_dactivation on all the input nodes to recursively evaluate the d(loss) / d(activation)
         derivatives on all nodes.
@@ -127,7 +139,7 @@ class Network:
         for i in self.input_nodes:
             i.calc_dloss_dactivation(self, ground_truths, self.iter)
 
-    def update_weights(self, step_size: float, momentum: float, decay: float, log: bool = False) -> (float, float):
+    def update_weights(self, step_size: float, momentum: float, decay: float, log: bool = False) -> (Decimal, Decimal):
         """
         Update weights of all registered nodes.
 
@@ -145,10 +157,10 @@ class Network:
                 This will make the weight gravitate towards zero, so that the weights won't explode to NaN.
         :param log:
                 Set True to show information of each weight update
-        :return (average dloss_dweight, max dloss_dweight) amongst all the nodes
+        :return: (average dloss_dweight, max dloss_dweight) amongst all the nodes
         """
 
-        dlosses = []
+        dlosses: List[Decimal] = []
         max_dloss = 0
 
         for node in self.nodes.values():
@@ -216,7 +228,7 @@ class Network:
 
                 continue
 
-    def train_iter(self, inputs: List[float], ground_truths: List[float],
+    def train_iter(self, inputs: List[Union[float, Decimal]], ground_truths: List[Union[float, Decimal]],
                    step_size: float, momentum: float, decay: float, verbose: bool = False) \
             -> (float, float, float):
         """
@@ -235,7 +247,7 @@ class Network:
                 (1 --> 100%, 0 --> 0%)
                 This will make the weight gravitate towards zero, so that the weights won't explode to NaN.
         :param verbose:
-        :return (training loss, avg. dloss_dweight, max dloss_dweight)
+        :return: (training loss, avg. dloss_dweight, max dloss_dweight)
         """
 
         if verbose:
@@ -257,7 +269,8 @@ class Network:
 
         return loss, avg_dloss, max_dloss
 
-    def validate(self, inputs: List[float], ground_truths: List[float], verbose: bool = False) -> float:
+    def validate(self, inputs: List[Union[float, Decimal]], ground_truths: List[Union[float, Decimal]],
+                 verbose: bool = False) -> Decimal:
         """
         Does a forward pass and returns the loss. No weight update.
 
@@ -279,7 +292,7 @@ class Network:
 
         return loss
 
-    def predict(self, inputs: List[float]) -> List[float]:
+    def predict(self, inputs: List[Union[float, Decimal]]) -> List[Decimal]:
         """
         Set inputs & get the network's output
 
@@ -294,7 +307,7 @@ class Network:
 def train_one_epoch(network: Network, training_data: Data, validation_data: Data, model_name: str, epoch_number: int,
                     step_size: float, momentum: float = 0.1, decay: float = 0.0005,
                     training_iterations: Optional[int] = None, validation_iterations: Optional[int] = None,
-                    verbose: bool = False, pause_after_iter: bool = False,
+                    verbose: bool = False, pause_after_iter: Optional[float] = None,
                     save_weights: bool = True):
     """
     Train the network for 1 epoch.
@@ -336,7 +349,11 @@ def train_one_epoch(network: Network, training_data: Data, validation_data: Data
 
     :param verbose: Set True to show additional verbose logs
 
-    :param pause_after_iter: Wait for newline input before proceeding with the next iteration for debugging purposes.
+    :param pause_after_iter:
+            (For debugging purposes)
+            If 0, wait for a newline input before moving on to the next epoch,
+            else if any other number specified, wait for that number of seconds,
+            otherwise if default (None), do not wait between iterations.
 
     :param save_weights: Set False to not save the weights to the weights file after this epoch.
     :return:
@@ -360,28 +377,27 @@ def train_one_epoch(network: Network, training_data: Data, validation_data: Data
     training_sample_size = len(training_data_subset)
     avg_training_loss = 0
 
-
     # Perform training iterations
     first = True
     for i, (inputs, ground_truths) in enumerate(training_data_subset):
 
+        iter_loss, avg_dloss, max_dloss = \
+            network.train_iter(inputs, ground_truths, step_size, momentum, decay, verbose)
+
         print("\033[A\033[K" * (0 if first else 7))
         first = False
 
-        print(f"\n_____________________________\nTraining iteration {i + 1} / {training_sample_size}:")
-
-        iter_loss, avg_dloss, max_dloss = \
-            network.train_iter(inputs, ground_truths, step_size, momentum, decay, verbose)
+        print(f"\n_____________________________\nTrained iteration {i + 1} / {training_sample_size}:")
 
         print(f"Iter loss: {iter_loss}\n"
               f"Avg d(loss)/d(weight): {avg_dloss}\n"
               f"Max d(loss)/d(weight): {max_dloss}")
         avg_training_loss += iter_loss / training_sample_size
 
-        if pause_after_iter:
+        if pause_after_iter == 0:
             input()
-
-
+        elif pause_after_iter is not None:
+            sleep(pause_after_iter)
 
     validation_sample_size = len(validation_data_subset)
     avg_validation_loss = 0

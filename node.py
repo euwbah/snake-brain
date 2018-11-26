@@ -1,8 +1,10 @@
-from math import exp
+from decimal import Decimal
+from math import e
 from random import random
-from typing import List, Tuple, Dict
+from typing import List, Dict, Union, Optional
 
 import network
+from helper_functions import coerce_decimal
 
 
 class Node:
@@ -17,13 +19,13 @@ class Node:
         self.name: str = name
 
         # NOTE: Node means either a Node or any class that inherits the Node class.
-        self.inputs: Dict[Node, float] = {}
+        self.inputs: Dict[Node, Decimal] = {}
         """
         List of Node-weight KVPs representing the nodes that this node uses as input, 
         and their respective weights
         """
 
-        self.prev_weight_change: List[float] = []
+        self.prev_weight_change: List[Decimal] = []
         """
         Contains the amount of which the weights were changed in the previous weight update for each node.
         Index order same as key order in self.inputs.
@@ -35,16 +37,16 @@ class Node:
         self.outputs: List[Node] = []
         """List of Nodes that uses this node's output as input"""
 
-        self.activation: float = 0
+        self.activation: Decimal = Decimal(0)
         """Stores the last calculated value of this node's activation value"""
 
-        self.dloss_dactivation = 0
+        self.dloss_dactivation: Decimal = Decimal(0)
         """Cached value of the last evaluated value of d(loss) / d(self.activation)"""
 
         self.last_derivative_eval_iter = -1
         """Stores the last iteration of which this node's derivative was evaluated"""
 
-    def connect(self, node: 'Node', weight: float = None):
+    def connect(self, node: 'Node', weight: Optional[Union[float, Decimal]] = None):
         """
         Connect self's output to node's input
 
@@ -58,31 +60,31 @@ class Node:
         #       all the instances of this node will be initialized to the same value, making the neural
         #       network essentially a linear regression model.
         if weight is None:
-            weight = random() * 2 - 1
+            weight = Decimal(random() * 2 - 1)
+
+        weight = coerce_decimal(weight)
 
         node.inputs[self] = weight
-        node.prev_weight_change.append(0)
+        node.prev_weight_change.append(Decimal(0))
 
-    def calculate_weighted_sum(self) -> float:
+    def calculate_weighted_sum(self) -> Decimal:
         ws = 0
         for node, weight in self.inputs.items():
             ws += node.calculate_activation() * weight
 
         return ws
 
-    def calculate_activation(self) -> float:
+    def calculate_activation(self) -> Decimal:
         """
         Calculate this node's activation value.
 
         The cached activation value, self.activation, should be updated when this is called.
 
         To be implemented by subclass
-
-        :return:
         """
-        return 0
+        return Decimal(0)
 
-    def calc_activation_derivative(self) -> float:
+    def calc_activation_derivative(self) -> Decimal:
         """
         Retrieve the activation function derivative: d(activation(x)) / d(x)
         where activation(x) is the node's activation value
@@ -92,11 +94,10 @@ class Node:
         When calling this method, ensure that the activation values are evaluated beforehand.
 
         To be implemented by subclass
-        :return:
         """
         pass
 
-    def calc_derivative_against(self, input: 'Node') -> float:
+    def calc_derivative_against(self, i: 'Node') -> Decimal:
         """
         Calculates d(self.activation) / d(input.activation).
 
@@ -110,25 +111,26 @@ class Node:
 
         NOTE: To be implemented by subclasses.
 
-        :param input: The other node
+        :param i: The other node
         :return: d(self.activation) / d(input.activation)
         """
 
         weighted_sum_derivative = None
         for n, w in self.inputs.items():
-            if n == input:
-                # d(x) / d(input.activation) just evaluates to the input's weight
+            if n == i:
+                # d(x) / d(i.activation) just evaluates to the i's weight
                 weighted_sum_derivative = w
                 break
 
-        # Make sure `input` is actually an input of this note
+        # Make sure `i` is actually an i of this note
         assert weighted_sum_derivative is not None, "`input` parameter must be an input of this node!"
 
         activation_derivative = self.calc_activation_derivative()
 
         return activation_derivative * weighted_sum_derivative
 
-    def calc_dloss_dactivation(self, n: 'network.Network', ground_truths: List[float], iter: int) -> float:
+    def calc_dloss_dactivation(self, n: 'network.Network', ground_truths: List[Union[float, Decimal]],
+                               iteration: int) -> Decimal:
         """
         Use recursion to "backpropagate" d(loss) / d(self.activation) for all connected nodes in the network.
         Start the recursion off by calling this on the INPUT nodes.
@@ -141,7 +143,7 @@ class Node:
                     for the stop cases.
         :param ground_truths:
                     The list of ground truth values - same as the one passed in to Network.evaluate_loss()
-        :param iter:
+        :param iteration:
                     The current iteration number
         :return: Returns d(loss) / d(self.activation)
         """
@@ -149,8 +151,10 @@ class Node:
         # Since this function recurses through all connections in the tree, the same nodes may be re-evaluated
         # multiple times. As such, use the cached value of dloss_dactivation if the iter parameter
         # matches self.last_derivative_eval_iter.
-        if iter == self.last_derivative_eval_iter:
+        if iteration == self.last_derivative_eval_iter:
             return self.dloss_dactivation
+
+        ground_truths = [coerce_decimal(x) for x in ground_truths]
 
         if self in n.output_nodes:
             # Stop case
@@ -158,14 +162,14 @@ class Node:
         else:
             # Propagate recursion
             self.dloss_dactivation = sum(
-                [o.calc_derivative_against(self) * o.calc_dloss_dactivation(n, ground_truths, iter)
+                [o.calc_derivative_against(self) * o.calc_dloss_dactivation(n, ground_truths, iteration)
                  for o in self.outputs])
 
-        self.last_derivative_eval_iter = iter
+        self.last_derivative_eval_iter = iteration
 
         return self.dloss_dactivation
 
-    def calc_dinputweights_dactivation(self) -> List[float]:
+    def calc_dinputweights_dactivation(self) -> List[Decimal]:
         """
         Evaluates to a list of d(activation) / d(input weights) for each input.
 
@@ -180,7 +184,8 @@ class Node:
 
         return [dactivation_dweightedsum * w for w in dweightedsum_dinputweights]
 
-    def update_weights(self, step_size: float, momentum: float, decay: float, log: bool = False) -> List[float]:
+    def update_weights(self, step_size: Union[float, Decimal], momentum: Union[float, Decimal],
+                       decay: Union[float, Decimal], log: bool = False) -> List[Decimal]:
         """
         Updates weights for connections to input nodes using the previously calculated d(loss)/d(activation) value,
         while applying common weight update techniques (momentum & weight decay) to improve training.
@@ -190,22 +195,30 @@ class Node:
         :param step_size:
                 The step size hyperparameter.
                 (new weight = old weight - step size * d(loss) / d(weight)
+
         :param log:
                 Set True to output weight update info on the console
+
         :param momentum:
                 How much of the previous weight update is applied to the current weight update.
                 (1 --> 100%, 0 --> 0%)
                 Using momentum prevents the network from getting stuck in local minimas.
                 (Imagine a ball rolling down the loss function curve. If there is a pothole in the curve, momentum
                 may allow the ball to not be stuck.)
+
         :param decay:
                 How much of the previous weight to subtract the current weight by.
                 (1 --> 100%, 0 --> 0%)
                 This will make the weight gravitate towards zero, so that the weights won't explode to NaN.
-        :return a list of dloss_dweights for checking if the node is dying.
+
+        :return: a list of dloss_dweights for checking if the node is dying.
         """
 
         dloss_dweights = [self.dloss_dactivation * da_di for da_di in self.calc_dinputweights_dactivation()]
+
+        step_size = coerce_decimal(step_size)
+        momentum = coerce_decimal(momentum)
+        decay = coerce_decimal(decay)
 
         for idx, node in enumerate(self.inputs):
             prev_weight = self.inputs[node]
@@ -218,7 +231,7 @@ class Node:
 
             new = self.inputs[node] + final_weight_change
             if log:
-                print(f"Weight update {node.name}: {self.inputs[node]} --> {new} (dloss: {dloss_dweights[idx]}, "
+                print(f"Weight update {node.name} --> {self.name}: {self.inputs[node]} --> {new} (dloss: {dloss_dweights[idx]}, "
                       f"step: {weight_change}, momentum: {weight_momentum}, decay: {weight_decay})")
             self.inputs[node] = new
 
@@ -235,17 +248,19 @@ class Node:
 
         return [f"{self.name}, {n.name}, {w}" for n, w in self.inputs.items()]
 
-    def set_weight(self, input: 'Node', weight: float):
+    def set_weight(self, i: 'Node', weight: Union[float, Decimal]):
         """
         Set a connection's weight.
 
-        :param input: The the input node to set the weight of
+        :param i: The the input node to set the weight of
         :param weight: The weight value
         """
 
-        assert input in self.inputs, f"Can't set weight - {node.name} is not an input of {self.name}!"
+        assert i in self.inputs, f"Can't set weight - {i.name} is not an input of {self.name}!"
 
-        self.inputs[input] = weight
+        weight = coerce_decimal(weight)
+
+        self.inputs[i] = weight
 
     def __repr__(self) -> str:
         return f"{type(self)} act: {self.activation}, dloss: {self.dloss_dactivation}"
@@ -257,16 +272,19 @@ class ConstantNode(Node):
     Use this as an input node, or as a bias node.
     """
 
-    def __init__(self, name: str, constant_value: float):
+    def __init__(self, name: str, constant_value: Union[float, Decimal]):
         super().__init__(name)
+
+        constant_value = coerce_decimal(constant_value)
 
         self.activation = constant_value
 
-    def calculate_activation(self) -> float:
+    def calculate_activation(self) -> Decimal:
         return self.activation
 
-    def calc_derivative_against(self, input: 'Node'):
+    def calc_derivative_against(self, i: 'Node'):
         raise NotImplementedError("Cannot calculate derivative from a constant node!")
+
 
 class LinearNode(Node):
 
@@ -276,15 +294,16 @@ class LinearNode(Node):
         """
         super().__init__(name)
 
-    def calculate_activation(self) -> float:
+    def calculate_activation(self) -> Decimal:
         self.activation = self.calculate_weighted_sum()
         return self.activation
 
     def calc_activation_derivative(self):
         return 1
 
+
 class ELUNode(Node):
-    def __init__(self, name: str, alpha: float):
+    def __init__(self, name: str, alpha: Union[float, Decimal]):
         """
         An ELU node with an initialised alpha constant
 
@@ -292,9 +311,9 @@ class ELUNode(Node):
         """
         super().__init__(name)
 
-        self.alpha = alpha
+        self.alpha = coerce_decimal(alpha)
 
-    def calculate_activation(self) -> float:
+    def calculate_activation(self) -> Decimal:
         self.activation = self.elu(self.calculate_weighted_sum(), self.alpha)
         return self.activation
 
@@ -302,25 +321,38 @@ class ELUNode(Node):
         return 1 if self.activation >= 0 else self.activation + self.alpha
 
     @staticmethod
-    def elu(x: float, alpha: float) -> float:
+    def elu(x: Union[float, Decimal], alpha: Union[float, Decimal]) -> Decimal:
         """
         The ELU activation function
         """
-        return x if x >= 0 else alpha * (exp(x) - 1)
+        x = coerce_decimal(x)
+
+        if x >= 0:
+            return x
+
+        # Hack to prevent node from dying
+        if x < -64:
+            x = Decimal(64)
+
+        alpha = coerce_decimal(alpha)
+        return alpha * (Decimal(e) ** x - 1)
 
 
 class SigmoidNode(Node):
-    def calculate_activation(self) -> float:
+    def calculate_activation(self) -> Decimal:
         self.activation = self.sigmoid(self.calculate_weighted_sum())
         return self.activation
 
     @staticmethod
-    def sigmoid(x: float) -> float:
-        # Hack to prevent overflows
-        if 709.782 >= x >= -709.782:
-            return 1 / (1 + exp(-x))
-        else:
-            return 1 / (1 + exp(709.782 if x > 0 else -709.782))
+    def sigmoid(x: Union[float, Decimal]) -> Decimal:
 
-    def calc_activation_derivative(self):
+        x = coerce_decimal(x)
+
+        # Hack to prevent sigmoid this function from returning '1', which will cause the node to die
+        if x <= 62:
+            return 1 / (1 + Decimal(e) ** -x)
+        else:
+            return 1 / (1 + Decimal(e) ** Decimal(-62))
+
+    def calc_activation_derivative(self) -> Decimal:
         return self.activation * (1 - self.activation)

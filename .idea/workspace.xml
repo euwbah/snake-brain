@@ -2,19 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c41dfa3-4f40-40b6-b946-77e5450e267e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/models/cubic_estimation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/nnet-from-scratch.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/nnet-from-scratch.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/helper_functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/architectures.py" beforeDir="false" afterPath="$PROJECT_DIR$/architectures.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/test1_2/train_loss_raw.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/test1_2/val_loss_raw.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/test1_20/train_loss_raw.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/test1_20/val_loss_raw.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/divisibility.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/divisibility.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/quadratic_estimation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/cubic_estimation.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/cubic_estimation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/network.py" beforeDir="false" afterPath="$PROJECT_DIR$/network.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node.py" beforeDir="false" afterPath="$PROJECT_DIR$/node.py" afterDir="false" />
     </list>
@@ -25,7 +16,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/snake_brain$main.coverage" NAME="main Coverage Results" MODIFIED="1542964394184" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/snake_brain$main.coverage" NAME="main Coverage Results" MODIFIED="1543218728320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/snake_brain$pytest_in_main_py.coverage" NAME="pytest in main.py Coverage Results" MODIFIED="1542940984428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
@@ -88,36 +79,38 @@
     <session id="194698509">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.open.time.7" value="1" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="11" />
-          <entry key="txt" value="76" />
+          <entry key="py" value="15" />
+          <entry key="txt" value="80" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="PLAIN_TEXT" value="75" />
-          <entry key="Python" value="11" />
+          <entry key="PLAIN_TEXT" value="79" />
+          <entry key="Python" value="15" />
           <entry key="Scratch" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="384" />
-          <entry key="dummy" value="6" />
-          <entry key="py" value="6506" />
+          <entry key="Python Console" value="1603" />
+          <entry key="dummy" value="14" />
+          <entry key="py" value="9419" />
+          <entry key="txt" value="110" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="6" />
-          <entry key="Python" value="6890" />
+          <entry key="PLAIN_TEXT" value="124" />
+          <entry key="Python" value="11022" />
         </counts>
       </usages-collector>
     </session>
@@ -127,8 +120,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+            <state relative-caret-position="288">
+              <caret line="16" column="51" selection-start-line="16" selection-start-column="51" selection-end-line="16" selection-end-column="51" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -139,8 +132,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/divisibility.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2505">
-              <caret line="146" column="69" selection-start-line="146" selection-start-column="69" selection-end-line="146" selection-end-column="69" />
+            <state relative-caret-position="356">
+              <caret line="166" column="37" selection-start-line="166" selection-start-column="37" selection-end-line="166" selection-end-column="37" />
               <folding>
                 <element signature="e#105#147#0" expanded="true" />
               </folding>
@@ -151,8 +144,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/cubic_estimation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="130" selection-start-line="130" selection-end-line="130" />
+            <state relative-caret-position="356">
+              <caret line="113" column="57" selection-start-line="113" selection-start-column="57" selection-end-line="113" selection-end-column="57" />
               <folding>
                 <element signature="e#96#121#0" expanded="true" />
               </folding>
@@ -163,10 +156,43 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/network.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
-              <caret line="367" column="33" selection-start-line="367" selection-start-column="33" selection-end-line="367" selection-end-column="33" />
+            <state relative-caret-position="144">
+              <caret line="389" column="56" selection-start-line="389" selection-start-column="56" selection-end-line="389" selection-end-column="56" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/logs/fx=x2+x+1 1-400-0.5 decay0/loss.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/helper_functions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="519">
+              <caret line="260" column="39" selection-start-line="260" selection-start-column="39" selection-end-line="260" selection-end-column="39" />
+              <folding>
+                <element signature="e#0#27#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -190,6 +216,9 @@
       <find>&quot;logs</find>
       <find>&quot;./logs</find>
       <find>training</find>
+      <find>exp</find>
+      <find>:return</find>
+      <find>Weight update</find>
     </findStrings>
     <replaceStrings>
       <replace>Node</replace>
@@ -216,11 +245,12 @@
         <option value="$PROJECT_DIR$/data.py" />
         <option value="$PROJECT_DIR$/models/quadratic_estimation.py" />
         <option value="$PROJECT_DIR$/tests.py" />
-        <option value="$PROJECT_DIR$/node.py" />
         <option value="$PROJECT_DIR$/models/divisibility.py" />
-        <option value="$PROJECT_DIR$/network.py" />
         <option value="$PROJECT_DIR$/architectures.py" />
+        <option value="$PROJECT_DIR$/helper_functions.py" />
         <option value="$PROJECT_DIR$/models/cubic_estimation.py" />
+        <option value="$PROJECT_DIR$/network.py" />
+        <option value="$PROJECT_DIR$/node.py" />
         <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
@@ -243,7 +273,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -259,20 +288,27 @@
             <path>
               <item name="snake-brain" type="b2602c69:ProjectViewProjectNode" />
               <item name="snake-brain" type="462c0819:PsiDirectoryNode" />
+              <item name="logs" type="462c0819:PsiDirectoryNode" />
+              <item name="fx=x2+x+1 1-400-0.5 decay0" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="snake-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="snake-brain" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="networ&#9;FILE&#9;file://C:/Users/Geospatial/Data/iPROG4/nnet-from-scratch/network.py" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last.edited.regexp" value="a, b, 3" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests.py" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/helper_functions.py" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -354,7 +390,14 @@
       <option name="project" value="LOCAL" />
       <updated>1542600033467</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Implemented other weight update techniques (momentum &amp; weight decay)">
+      <created>1542965762865</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1542965762865</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -402,18 +445,18 @@
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13753057" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1393643" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295964" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3295964" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.3206278" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49938875" weight="0.50672644" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Version Control" order="6" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32847533" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50061125" side_tool="true" weight="0.3206278" />
       <window_info anchor="bottom" id="Python Console" order="9" weight="0.32735425" />
       <window_info anchor="bottom" id="TODO" order="10" weight="0.3290993" />
       <window_info anchor="bottom" id="Messages" order="11" />
@@ -437,7 +480,8 @@
     <MESSAGE value="Fixed loading and saving issues + display avg &amp; max loss gradients" />
     <MESSAGE value="Testing" />
     <MESSAGE value="Fixed non-rectified value for d(loss) average calculation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed non-rectified value for d(loss) average calculation" />
+    <MESSAGE value="Implemented other weight update techniques (momentum &amp; weight decay)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented other weight update techniques (momentum &amp; weight decay)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -488,6 +532,31 @@
     </expressions>
     <expressions id="evaluateExpression">
       <expression>
+        <expression-string>type(node.calculate_activation())</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>type(weight)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>type(node.calculate_activation()) is type(weight)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>weight</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>node.calculate_activation()</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>n.name not in self.nodes</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
@@ -505,189 +574,49 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E100_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E90_weights.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E80_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E60_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E120_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E170_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E20_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E10_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E30_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E40_weights.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E70_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E110_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E140_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E150_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E160_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E180_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E190_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/loss.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2497">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_1_1/E70_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_1_1/E160_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_1_1/E200_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_1_1/loss.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1723">
-          <caret line="76" selection-start-line="76" selection-end-line="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_1_1_decay0005/E70_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_1_1_decay0005/E140_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_1_1_decay0005/loss.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2070">
-          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/buffer1.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_1_1_decay0/E70_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_1_1_decay0/E110_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_1_1_decay0/E160_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_1_1_decay0/E200_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/fx=x+1_1_1_decay0/E90_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/fx=x+1_1_1_decay0/loss.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2589">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/linear_1_1_decay0/loss.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1437">
-          <caret line="78" column="68" selection-start-line="78" selection-start-column="68" selection-end-line="78" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/fx=x+1 1-3-5 decay0/E200_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="46" column="8" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/fx=x+1 1-2-5 decay0/loss.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2841" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/fx=x+1 1-2-5 decay0/E200_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/fx=x+1 3-6-5 decay0/loss.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2787" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/fx=x+1 3-6-5 decay0/E200_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/fx=x2+x+1 2-2 decay0/E40_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/fx=x2+x+1 2-2 decay0/E10_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/fx=x2+x+1 2-2 decay0/E170_weights.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/fx=x2+x+1 2-2 decay0/loss.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2535" />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E170_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E20_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E10_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E30_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E40_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E70_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E110_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E140_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E150_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E160_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E180_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E190_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/loss.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/linear_1_1/E70_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/linear_1_1/E160_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/linear_1_1/E200_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/linear_1_1/loss.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/linear_1_1_decay0005/E70_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/linear_1_1_decay0005/E140_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/linear_1_1_decay0005/loss.txt" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/buffer1.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/linear_1_1_decay0/E70_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/linear_1_1_decay0/E110_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/linear_1_1_decay0/E160_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/linear_1_1_decay0/E200_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/fx=x+1_1_1_decay0/E90_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/fx=x+1_1_1_decay0/loss.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/linear_1_1_decay0/loss.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/fx=x+1 1-3-5 decay0/E200_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/fx=x+1 1-2-5 decay0/loss.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/fx=x+1 1-2-5 decay0/E200_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/fx=x+1 3-6-5 decay0/loss.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/fx=x+1 3-6-5 decay0/E200_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/fx=x2+x+1 2-2 decay0/E40_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/fx=x2+x+1 2-2 decay0/E10_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/fx=x2+x+1 2-2 decay0/E170_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/fx=x2+x+1 2-2 decay0/loss.txt" />
     <entry file="file://$PROJECT_DIR$/architectures.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="281">
           <caret line="142" column="4" selection-start-line="142" selection-start-column="4" selection-end-line="142" selection-end-column="4" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/network.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="367" column="33" selection-start-line="367" selection-start-column="33" selection-end-line="367" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -705,10 +634,34 @@
     <entry file="file://$PROJECT_DIR$/logs/fx=x2+x+1 2-2-0.5 decay0/E200_weights.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/1213669621/math.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="139" column="4" selection-start-line="139" selection-start-column="4" selection-end-line="139" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/1213669621/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="3028" column="12" selection-start-line="3028" selection-start-column="8" selection-end-line="3028" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/helper_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/models/cubic_estimation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="130" selection-start-line="130" selection-end-line="130" />
+        <state relative-caret-position="356">
+          <caret line="113" column="57" selection-start-line="113" selection-start-column="57" selection-end-line="113" selection-end-column="57" />
           <folding>
             <element signature="e#96#121#0" expanded="true" />
           </folding>
@@ -717,18 +670,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models/divisibility.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2505">
-          <caret line="146" column="69" selection-start-line="146" selection-start-column="69" selection-end-line="146" selection-end-column="69" />
+        <state relative-caret-position="356">
+          <caret line="166" column="37" selection-start-line="166" selection-start-column="37" selection-end-line="166" selection-end-column="37" />
           <folding>
             <element signature="e#105#147#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/logs/fx=x2+x+1 1-400-0.5 decay0/E7_weights.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8640" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/fx=x2+x+1 1-400-0.5 decay0/loss.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/network.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="389" column="56" selection-start-line="389" selection-start-column="56" selection-end-line="389" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="519">
+          <caret line="260" column="39" selection-start-line="260" selection-start-column="39" selection-end-line="260" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        <state relative-caret-position="288">
+          <caret line="16" column="51" selection-start-line="16" selection-start-column="51" selection-end-line="16" selection-end-column="51" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
