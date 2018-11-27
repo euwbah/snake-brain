@@ -17,12 +17,12 @@ if __name__ == "__main__":
     # test_model('fx=x2+1 2-30-0.5 decay0', 2, 30, 0.5)
 
     train_model('fx=x2+1 2-30-0.5 decay3e-6',
-                2, 30, 0.5, 100, 1,
+                2, 30, 0.5, 240, 1,
                 0, 1, 0, 1,
                 -6, 6,
                 -8, 8,
                 60000, 4000, 300, 75,
-                step_size=0.0003, momentum=0.4, decay=0.0001,
+                step_size=0.00005, momentum=0.1, decay=0,
                 log_level=0,
                 pause_after_iter=None)
 

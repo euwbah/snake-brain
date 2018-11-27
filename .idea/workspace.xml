@@ -3,6 +3,24 @@
   <component name="ChangeListManager">
     <list default="true" id="2c41dfa3-4f40-40b6-b946-77e5450e267e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E11_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E12_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E13_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E14_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E15_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E16_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E17_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E18_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E19_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E2_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E3_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E4_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E5_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E6_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E7_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E8_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E9_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/loss.txt" beforeDir="false" afterPath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/loss.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,95 +47,13 @@
     <expand />
     <select />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="1110617775">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="5" />
-          <entry key="project.open.time.12" value="1" />
-          <entry key="project.open.time.7" value="4" />
-          <entry key="project.open.time.71" value="1" />
-          <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="7" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="Python Console" value="1046" />
-          <entry key="dummy" value="1" />
-          <entry key="gitignore" value="16" />
-          <entry key="py" value="41801" />
-          <entry key="txt" value="197" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="PLAIN_TEXT" value="214" />
-          <entry key="Python" value="42846" />
-          <entry key="RegExp" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="gitignore" value="1" />
-          <entry key="py" value="19" />
-          <entry key="txt" value="55" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="PLAIN_TEXT" value="56" />
-          <entry key="Python" value="19" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.vcs.git.usages" />
-    </session>
-    <session id="194698509">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="3" />
-          <entry key="project.open.time.1" value="2" />
-          <entry key="project.open.time.5" value="1" />
-          <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="4" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="py" value="16" />
-          <entry key="txt" value="80" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="PLAIN_TEXT" value="79" />
-          <entry key="Python" value="16" />
-          <entry key="Scratch" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="Python Console" value="1603" />
-          <entry key="dummy" value="26" />
-          <entry key="py" value="11351" />
-          <entry key="txt" value="547" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="PLAIN_TEXT" value="573" />
-          <entry key="Python" value="12954" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="24" column="32" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
+            <state relative-caret-position="238">
+              <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -128,7 +64,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/divisibility.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
+            <state relative-caret-position="2898">
               <caret line="166" column="37" selection-start-line="166" selection-start-column="37" selection-end-line="166" selection-end-column="37" />
               <folding>
                 <element signature="e#105#147#0" expanded="true" />
@@ -137,11 +73,20 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/loss.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="26" column="96" selection-start-line="26" selection-start-column="96" selection-end-line="26" selection-end-column="96" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/cubic_estimation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="98" column="64" selection-start-line="98" selection-start-column="64" selection-end-line="98" selection-end-column="64" />
+            <state relative-caret-position="1962">
+              <caret line="114" column="23" selection-start-line="114" selection-start-column="23" selection-end-line="114" selection-end-column="23" />
               <folding>
                 <element signature="e#96#121#0" expanded="true" />
               </folding>
@@ -152,7 +97,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/architectures.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="407">
+            <state relative-caret-position="3924">
               <caret line="219" selection-start-line="219" selection-end-line="219" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
@@ -164,7 +109,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/network.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="623">
+            <state relative-caret-position="2826">
               <caret line="166" column="37" selection-start-line="166" selection-start-column="37" selection-end-line="166" selection-end-column="37" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -185,11 +130,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/helper_functions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
+            <state relative-caret-position="144">
               <caret line="9" selection-start-line="9" selection-end-line="9" />
-              <folding>
-                <element signature="e#0#30#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -197,7 +139,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/node.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
+            <state relative-caret-position="4104">
               <caret line="234" column="55" selection-start-line="234" selection-start-column="55" selection-end-line="234" selection-end-column="55" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
@@ -228,6 +170,7 @@
       <find>:return</find>
       <find>Weight update</find>
       <find>Total iterations</find>
+      <find>file h</find>
     </findStrings>
     <replaceStrings>
       <replace>Node</replace>
@@ -261,20 +204,15 @@
         <option value="$PROJECT_DIR$/architectures.py" />
         <option value="$PROJECT_DIR$/models/cubic_estimation.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/loss.txt" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1696" />
-    <option name="height" value="1026" />
+    <option name="x" value="-1288" />
+    <option name="y" value="7" />
+    <option name="width" value="1296" />
+    <option name="height" value="1000" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -293,6 +231,12 @@
               <item name="snake-brain" type="b2602c69:ProjectViewProjectNode" />
               <item name="snake-brain" type="462c0819:PsiDirectoryNode" />
               <item name="logs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="snake-brain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="snake-brain" type="462c0819:PsiDirectoryNode" />
+              <item name="logs" type="462c0819:PsiDirectoryNode" />
+              <item name="fx=x2+1 2-30-0.5 decay3e-6" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="snake-brain" type="b2602c69:ProjectViewProjectNode" />
@@ -364,6 +308,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1542156310469</updated>
+      <workItem from="1543281389387" duration="10904000" />
+      <workItem from="1543307474033" duration="524000" />
     </task>
     <task id="LOCAL-00001" summary="It works (sort of)">
       <created>1542339147586</created>
@@ -414,7 +360,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543225411052</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Training f(x) = x^2 + 1 on new architecture">
+      <created>1543226847421</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1543226847421</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -449,6 +402,9 @@
       <configuration name="pytest in main.py" configurationId="tests" />
     </history-entry>
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="11428000" />
+  </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
@@ -459,22 +415,22 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
+    <frame x="-1288" y="7" width="1296" height="1000" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1393643" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19255663" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295964" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3295964" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49938875" visible="true" weight="0.44843048" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49938875" weight="0.44843048" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="6" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32847533" />
+      <window_info anchor="bottom" id="Version Control" order="6" weight="0.3298731" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.33794695" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50061125" side_tool="true" weight="0.3206278" />
-      <window_info anchor="bottom" id="Python Console" order="9" weight="0.32735425" />
+      <window_info anchor="bottom" id="Python Console" order="9" weight="0.32641292" />
       <window_info anchor="bottom" id="TODO" order="10" weight="0.3290993" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
@@ -489,9 +445,6 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="It works (sort of)" />
     <MESSAGE value="Fixed loading and saving issues + display avg &amp; max loss gradients" />
@@ -500,13 +453,11 @@
     <MESSAGE value="Implemented other weight update techniques (momentum &amp; weight decay)" />
     <MESSAGE value="Improved console training output&#10;&#10;Uses ANSI terminal escape codes to prevent terminal spam (doesn't work in the intelliJ embedded terminal)" />
     <MESSAGE value="Added alternating elu-sigmoid layers in architectures.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added alternating elu-sigmoid layers in architectures.py" />
+    <MESSAGE value="Training f(x) = x^2 + 1 on new architecture" />
+    <option name="LAST_COMMIT_MESSAGE" value="Training f(x) = x^2 + 1 on new architecture" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints-dialog>
-        <breakpoints-dialog />
-      </breakpoints-dialog>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -593,10 +544,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E170_weights.txt" />
-    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E20_weights.txt" />
-    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E10_weights.txt" />
-    <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E30_weights.txt" />
     <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E40_weights.txt" />
     <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E70_weights.txt" />
     <entry file="file://$PROJECT_DIR$/logs/linear_3_3/E110_weights.txt" />
@@ -657,9 +604,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/logs/fx=x2+x+1 1-400-0.5 decay0/E7_weights.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8640" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E19_weights.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E111_weights.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E130_weights.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4050" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/models/divisibility.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
+        <state relative-caret-position="2898">
           <caret line="166" column="37" selection-start-line="166" selection-start-column="37" selection-end-line="166" selection-end-column="37" />
           <folding>
             <element signature="e#105#147#0" expanded="true" />
@@ -667,9 +638,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/logs/fx=x2+x+1 1-400-0.5 decay0/E7_weights.txt">
+    <entry file="file://$PROJECT_DIR$/models/cubic_estimation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8640" />
+        <state relative-caret-position="1962">
+          <caret line="114" column="23" selection-start-line="114" selection-start-column="23" selection-end-line="114" selection-end-column="23" />
+          <folding>
+            <element signature="e#96#121#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/architectures.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3924">
+          <caret line="219" selection-start-line="219" selection-end-line="219" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/network.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2826">
+          <caret line="166" column="37" selection-start-line="166" selection-start-column="37" selection-end-line="166" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/logs/fx=x2+x+1 1-400-0.5 decay0/loss.txt">
@@ -681,27 +677,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/helper_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
+        <state relative-caret-position="144">
           <caret line="9" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/network.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="166" column="37" selection-start-line="166" selection-start-column="37" selection-end-line="166" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
+        <state relative-caret-position="4104">
           <caret line="234" column="55" selection-start-line="234" selection-start-column="55" selection-end-line="234" selection-end-column="55" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
@@ -709,33 +692,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/architectures.py">
+    <entry file="file://$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/loss.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="219" selection-start-line="219" selection-end-line="219" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/cubic_estimation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="98" column="64" selection-start-line="98" selection-start-column="64" selection-end-line="98" selection-end-column="64" />
-          <folding>
-            <element signature="e#96#121#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="24" column="32" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="468">
+          <caret line="26" column="96" selection-start-line="26" selection-start-column="96" selection-end-line="26" selection-end-column="96" />
         </state>
       </provider>
     </entry>
