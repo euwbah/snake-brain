@@ -359,8 +359,11 @@ class SigmoidNode(Node):
 
         x = coerce_decimal(x)
 
-        # Hack to prevent sigmoid this function from returning '1', which will cause the node to die
-        if x <= 62:
+        if x <= 23025853.232525551691:
+            # Hack to prevent overflow error
+            return Decimal('1.00000000122978901313257153E-10000001')
+        elif x <= 62:
+            # Hack to prevent sigmoid this function from returning '1', which will cause the node to die
             return 1 / (1 + Decimal(e) ** -x)
         else:
             return 1 / (1 + Decimal(e) ** Decimal(-62))

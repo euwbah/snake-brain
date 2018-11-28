@@ -3,25 +3,115 @@
   <component name="ChangeListManager">
     <list default="true" id="2c41dfa3-4f40-40b6-b946-77e5450e267e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E11_weights.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E12_weights.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E13_weights.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E14_weights.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E15_weights.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E16_weights.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E17_weights.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E18_weights.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E19_weights.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E2_weights.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E3_weights.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E4_weights.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E5_weights.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E6_weights.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E7_weights.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E8_weights.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E9_weights.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/loss.txt" beforeDir="false" afterPath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/loss.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E101_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E102_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E103_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E104_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E105_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E106_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E107_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E108_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E109_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E111_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E112_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E113_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E114_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E115_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E116_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E117_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E118_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E119_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E121_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E122_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E123_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E124_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E126_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E127_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E128_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E129_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E131_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E132_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E133_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E134_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E136_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E137_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E138_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E139_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E141_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E142_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E143_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E144_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E146_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E147_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E148_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E149_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E151_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E152_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E153_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E154_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E156_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E157_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E158_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E159_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E161_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E162_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E163_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E164_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E166_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E167_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E168_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E169_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E171_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E172_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E173_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E174_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E176_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E177_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E178_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E179_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E181_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E182_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E183_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E184_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E186_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E187_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E188_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E189_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E191_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E192_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E193_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E194_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E196_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E197_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E198_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E199_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E201_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E203_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E205_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E207_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E209_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E211_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E213_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E215_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E217_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E219_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E221_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E223_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E225_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E227_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E229_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E65_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E75_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E85_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E93_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E94_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E95_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E96_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E97_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E98_weights.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/E99_weights.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node.py" beforeDir="false" afterPath="$PROJECT_DIR$/node.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,7 +120,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/snake_brain$main.coverage" NAME="main Coverage Results" MODIFIED="1543225415738" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/snake_brain$main.coverage" NAME="main Coverage Results" MODIFIED="1543370691838" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/snake_brain$pytest_in_main_py.coverage" NAME="pytest in main.py Coverage Results" MODIFIED="1542940984428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
@@ -49,11 +139,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+            <state relative-caret-position="144">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -64,7 +154,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/divisibility.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2898">
+            <state relative-caret-position="1323">
               <caret line="166" column="37" selection-start-line="166" selection-start-column="37" selection-end-line="166" selection-end-column="37" />
               <folding>
                 <element signature="e#105#147#0" expanded="true" />
@@ -73,20 +163,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/loss.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="26" column="96" selection-start-line="26" selection-start-column="96" selection-end-line="26" selection-end-column="96" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/cubic_estimation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1962">
-              <caret line="114" column="23" selection-start-line="114" selection-start-column="23" selection-end-line="114" selection-end-column="23" />
+            <state relative-caret-position="1818">
+              <caret line="131" selection-start-line="131" selection-end-line="131" />
               <folding>
                 <element signature="e#96#121#0" expanded="true" />
               </folding>
@@ -97,7 +178,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/architectures.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3924">
+            <state relative-caret-position="1094">
               <caret line="219" selection-start-line="219" selection-end-line="219" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
@@ -109,20 +190,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/network.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2826">
+            <state relative-caret-position="1206">
               <caret line="166" column="37" selection-start-line="166" selection-start-column="37" selection-end-line="166" selection-end-column="37" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/logs/fx=x2+x+1 1-400-0.5 decay0/loss.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
@@ -139,8 +211,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/node.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4104">
-              <caret line="234" column="55" selection-start-line="234" selection-start-column="55" selection-end-line="234" selection-end-column="55" />
+            <state relative-caret-position="302">
+              <caret line="363" column="68" selection-start-line="363" selection-start-column="68" selection-end-line="363" selection-end-column="68" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -200,11 +272,11 @@
         <option value="$PROJECT_DIR$/models/divisibility.py" />
         <option value="$PROJECT_DIR$/helper_functions.py" />
         <option value="$PROJECT_DIR$/network.py" />
-        <option value="$PROJECT_DIR$/node.py" />
         <option value="$PROJECT_DIR$/architectures.py" />
         <option value="$PROJECT_DIR$/models/cubic_estimation.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/loss.txt" />
+        <option value="$PROJECT_DIR$/node.py" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -220,6 +292,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -235,19 +308,12 @@
             <path>
               <item name="snake-brain" type="b2602c69:ProjectViewProjectNode" />
               <item name="snake-brain" type="462c0819:PsiDirectoryNode" />
-              <item name="logs" type="462c0819:PsiDirectoryNode" />
-              <item name="fx=x2+1 2-30-0.5 decay3e-6" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="snake-brain" type="b2602c69:ProjectViewProjectNode" />
-              <item name="snake-brain" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -310,6 +376,9 @@
       <updated>1542156310469</updated>
       <workItem from="1543281389387" duration="10904000" />
       <workItem from="1543307474033" duration="524000" />
+      <workItem from="1543308022077" duration="272000" />
+      <workItem from="1543308316719" duration="5000" />
+      <workItem from="1543369967650" duration="2601000" />
     </task>
     <task id="LOCAL-00001" summary="It works (sort of)">
       <created>1542339147586</created>
@@ -367,7 +436,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543226847421</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="More training">
+      <created>1543308057888</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1543308057889</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -403,7 +479,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11428000" />
+    <option name="totallyTimeSpent" value="14306000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -418,19 +494,19 @@
     <frame x="-1288" y="7" width="1296" height="1000" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19255663" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20226537" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295964" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3295964" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49938875" weight="0.44843048" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49938875" weight="0.4475202" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.3298731" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.33794695" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.33794695" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50061125" side_tool="true" weight="0.3206278" />
-      <window_info anchor="bottom" id="Python Console" order="9" weight="0.32641292" />
+      <window_info anchor="bottom" id="Python Console" order="9" visible="true" weight="0.32641292" />
       <window_info anchor="bottom" id="TODO" order="10" weight="0.3290993" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
@@ -454,10 +530,18 @@
     <MESSAGE value="Improved console training output&#10;&#10;Uses ANSI terminal escape codes to prevent terminal spam (doesn't work in the intelliJ embedded terminal)" />
     <MESSAGE value="Added alternating elu-sigmoid layers in architectures.py" />
     <MESSAGE value="Training f(x) = x^2 + 1 on new architecture" />
-    <option name="LAST_COMMIT_MESSAGE" value="Training f(x) = x^2 + 1 on new architecture" />
+    <MESSAGE value="More training" />
+    <option name="LAST_COMMIT_MESSAGE" value="More training" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/models/cubic_estimation.py</url>
+          <line>131</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -618,19 +702,23 @@
         <state relative-caret-position="-4050" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/helper_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="144">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/loss.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="26" column="96" selection-start-line="26" selection-start-column="96" selection-end-line="26" selection-end-column="96" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/divisibility.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2898">
+        <state relative-caret-position="1323">
           <caret line="166" column="37" selection-start-line="166" selection-start-column="37" selection-end-line="166" selection-end-column="37" />
           <folding>
             <element signature="e#105#147#0" expanded="true" />
@@ -638,19 +726,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/cubic_estimation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1962">
-          <caret line="114" column="23" selection-start-line="114" selection-start-column="23" selection-end-line="114" selection-end-column="23" />
-          <folding>
-            <element signature="e#96#121#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/architectures.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3924">
+        <state relative-caret-position="1094">
           <caret line="219" selection-start-line="219" selection-end-line="219" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
@@ -658,12 +736,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/network.py">
+    <entry file="file://$PROJECT_DIR$/models/cubic_estimation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2826">
-          <caret line="166" column="37" selection-start-line="166" selection-start-column="37" selection-end-line="166" selection-end-column="37" />
+        <state relative-caret-position="1818">
+          <caret line="131" selection-start-line="131" selection-end-line="131" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#96#121#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -675,27 +753,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/helper_functions.py">
+    <entry file="file://$PROJECT_DIR$/network.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="1206">
+          <caret line="166" column="37" selection-start-line="166" selection-start-column="37" selection-end-line="166" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4104">
-          <caret line="234" column="55" selection-start-line="234" selection-start-column="55" selection-end-line="234" selection-end-column="55" />
+        <state relative-caret-position="302">
+          <caret line="363" column="68" selection-start-line="363" selection-start-column="68" selection-end-line="363" selection-end-column="68" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/logs/fx=x2+1 2-30-0.5 decay3e-6/loss.txt">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="26" column="96" selection-start-line="26" selection-start-column="96" selection-end-line="26" selection-end-column="96" />
+        <state relative-caret-position="144">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
